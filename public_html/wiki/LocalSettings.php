@@ -151,5 +151,5 @@ $wgGroupPermissions['bureaucrat']['edit']           = true;
 $wgGroupPermissions['*']['edit']    = false;
 $wgGroupPermissions['user']['edit'] = true;
 
-#para incorporar el logo provisional de Mozilla Communities a la wiki
+#para incorporar el logo provisional de Mozilla Communities a la wiki CynthiaGDOA
 $wgLogo = "{$wgScriptPath}/LogoMC.jpg"; 
