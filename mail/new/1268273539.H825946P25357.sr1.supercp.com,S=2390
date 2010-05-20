@@ -1,0 +1,66 @@
+Return-path: <>
+Envelope-to: mozillav@sr1.supercp.com
+Delivery-date: Wed, 10 Mar 2010 21:12:19 -0500
+Received: from mailnull by sr1.supercp.com with local (Exim 4.69)
+	id 1NpXsp-0006av-PT
+	for mozillav@sr1.supercp.com; Wed, 10 Mar 2010 21:12:19 -0500
+X-Failed-Recipients: jonathanorlando@mozillacolombia.org
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@sr1.supercp.com>
+To: mozillav@sr1.supercp.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1NpXsp-0006av-PT@sr1.supercp.com>
+Date: Wed, 10 Mar 2010 21:12:19 -0500
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  jonathanorlando@mozillacolombia.org
+    No Such User Here
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <mozillav@sr1.supercp.com>
+Received: from mozillav by sr1.supercp.com with local (Exim 4.69)
+	(envelope-from <mozillav@sr1.supercp.com>)
+	id 1NpXsp-0006al-5b
+	for jonathanorlando@mozillacolombia.org; Wed, 10 Mar 2010 21:12:19 -0500
+To: =?UTF-8?B?am9uYXRoYW5vcmxhbmRv?= <jonathanorlando@mozillacolombia.org>
+Subject: =?UTF-8?B?QmllbnZlbmlkbyBhICJGb3JvcyIgLSBodHRwOi8vZm9yby5tb3ppbGxhdmVu?= =?UTF-8?B?ZXp1ZWxhLm9yZw==?=
+From: <maedca@mozillavenezuela.org>
+Reply-To: <maedca@mozillavenezuela.org>
+MIME-Version: 1.0
+Message-ID: <57762467ecb3a32c77315f754305540a@foro.mozillavenezuela.org>
+Date: Wed, 10 Mar 2010 21:12:19 -0500
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: phpBB3
+X-MimeOLE: phpBB3
+X-phpBB-Origin: phpbb://foro.mozillavenezuela.org
+X-AntiAbuse: Board servername - foro.mozillavenezuela.org
+X-AntiAbuse: User_id - 1
+X-AntiAbuse: Username - Anonymous
+X-AntiAbuse: User IP - 190.84.165.137
+
+Bienvenido a los foros Foros
+
+Por favor guarde este email para futuras referencias. La información de su
+cuenta es la siguiente:
+
+----------------------------
+Nombre de usuario: jonathanorlando
+URL del Sitio: http://foro.mozillavenezuela.org
+----------------------------
+
+Su clave ha sido encriptada en nuestra base de datos. Si la olvidó podrá
+solicitar una nueva la cuál será activada en la misma forma que esta
+cuenta.
+
+Gracias por registrarse.
+
+-- 
+Gracias, La Administración

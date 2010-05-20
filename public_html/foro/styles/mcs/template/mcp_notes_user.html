@@ -1,0 +1,86 @@
+<!-- INCLUDE mcp_header.html -->
+
+<form method="post" id="mcp" action="{U_POST_ACTION}">
+
+<h1>{L_TITLE}</h1>
+
+<h2>{USERNAME_FULL}</h2>
+
+<!-- IF AVATAR_IMG --><div>{AVATAR_IMG}</div><!-- ENDIF -->
+
+		<div class="panel">
+			<dl class="kvlist">
+				<!-- IF RANK_TITLE --><dt>{L_RANK}:</dt><dd>{RANK_TITLE}</dd><!-- ENDIF -->
+				<!-- IF RANK_IMG --><dt><!-- IF not RANK_TITLE -->{L_RANK}:<!-- ENDIF --></dt><dd>{RANK_IMG}</dd><!-- ENDIF -->
+				<dt>{L_JOINED}:</dt><dd>{JOINED}</dd>
+				<dt>{L_TOTAL_POSTS}:</dt><dd>{POSTS}</dd>
+				<dt>{L_WARNINGS}: </dt><dd>{WARNINGS}</dd>
+			</dl>
+		</div>
+
+
+<h2>{L_ADD_FEEDBACK}</h2>
+<p class="panel">{L_ADD_FEEDBACK_EXPLAIN}</p>
+
+<div class="panel">
+		<textarea name="usernote" id="usernote" cols="40" rows="3"></textarea>
+</div>
+
+<div><input type="submit" name="action[add_feedback]" value="{L_SUBMIT}" />{S_HIDDEN_FIELDS}{S_FORM_TOKEN}</div>
+
+<!-- IF .usernotes -->
+	<div class="display-actions">
+		<div class="other">
+			{L_SEARCH_KEYWORDS}: <input type="text" name="keywords" value="{S_KEYWORDS}" /> <input type="submit" name="filter" value="{L_SEARCH}" />
+		</div>
+		<!-- DEFINE $TOTAL = '{TOTAL_REPORTS}' -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th>{L_ACTION_NOTE}</th>
+				<td>{L_REPORT_BY}</td>
+				<td>{L_IP}</td>
+				<td>{L_TIME}</td>
+				<!-- IF S_CLEAR_ALLOWED --><td class="mark-col">{L_MARK} <input type="checkbox" id="marknote_all" onclick="marklist_all('mcp', 'marknote[', 'marknote_all');" title="{L_MARK_ALL}" /></td><!-- ENDIF -->
+			</tr>
+		</thead>
+		<tbody>
+			<!-- BEGIN usernotes -->
+				<tr>
+					<th>{usernotes.ACTION}</th>
+					<td>{usernotes.REPORT_BY}</td>
+					<td>{usernotes.IP}</td>
+					<td>{usernotes.REPORT_AT}</td>
+					<!-- IF S_CLEAR_ALLOWED --><td class="mark-col"><input type="checkbox" name="marknote[]" id="note-{usernotes.ID}" value="{usernotes.ID}" onclick="marklist_each('mcp', 'marknote[', 'marknote_all');" /></td><!-- ENDIF -->
+				</tr>
+			<!-- END usernames -->
+		</tbody>
+	</table>
+
+	<fieldset class="display-options">
+		<label>{L_DISPLAY_LOG}: {S_SELECT_SORT_DAYS}</label>
+		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label><label>{S_SELECT_SORT_DIR}</label>		
+		<input type="submit" name="sort" value="{L_GO}" />
+	</fieldset>
+
+	<div class="display-actions">
+		<!-- IF S_CLEAR_ALLOWED -->
+			<div class="buttons">
+				<input type="submit" name="action[del_all]" value="{L_DELETE_ALL}" />
+				<input type="submit" name="action[del_marked]" value="{L_DELETE_MARKED}" />
+			</div>
+		<!-- ENDIF -->
+
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+<!-- ELSE -->
+	<p class="no-entries">{L_NO_ENTRIES}</p>
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

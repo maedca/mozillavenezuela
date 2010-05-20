@@ -1,0 +1,18 @@
+<!-- INCLUDE mcp_header.html -->
+
+<form method="post" id="mcp" action="{U_POST_ACTION}">
+
+<h1>{L_TITLE}</h1>
+
+<div class="panel">
+	<dl class="kvlist">
+		<dt><label for="username">{L_SELECT_USER}:</label></dt>
+		<dd><input name="username" id="username" type="text" /></dd>
+		<dd><strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong></dd>
+	</dl>
+</div>
+
+<div><input type="submit" name="submituser" value="{L_SUBMIT}" />{S_FORM_TOKEN}</div>
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

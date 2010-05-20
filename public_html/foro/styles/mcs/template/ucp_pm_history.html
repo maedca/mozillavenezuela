@@ -1,0 +1,27 @@
+<span class="expand-collapse-view"><a id="review" href="#" onclick="viewableArea(getElementById('topicreview'), true); var rev_text = getElementById('review').firstChild; if (rev_text.data == '{LA_EXPAND_VIEW}'){rev_text.data = '{LA_COLLAPSE_VIEW}'; } else if (rev_text.data == '{LA_COLLAPSE_VIEW}'){rev_text.data = '{LA_EXPAND_VIEW}'}; return false;">{L_EXPAND_VIEW}</a></span>
+
+<h2>{L_MESSAGE_HISTORY}: {HISTORY_TITLE}</h2>
+
+<div id="topicreview">
+	<!-- BEGIN history_row -->
+		<div class="post">
+
+<div class="postbody" id="pr{history_row.MSG_ID}">
+	<!-- IF history_row.U_QUOTE or history_row.MESSAGE_AUTHOR_QUOTE -->
+		<ul class="linklist actionlist">
+			<li><a <!-- IF history_row.U_QUOTE -->href="{history_row.U_QUOTE}"<!-- ELSE -->href="#postingbox" onclick="addquote({history_row.MSG_ID}, '{history_row.MESSAGE_AUTHOR_QUOTE}');"<!-- ENDIF --> title="{L_QUOTE} {history_row.MESSAGE_AUTHOR}">{L_QUOTE} {history_row.MESSAGE_AUTHOR}</a></li>
+		</ul>
+	<!-- ENDIF -->
+
+	<h2><a href="{history_row.U_VIEW_MESSAGE}" <!-- IF history_row.S_CURRENT_MSG -->class="current"<!-- ENDIF -->>{history_row.SUBJECT}</a></h2>    
+	<p class="author"><img src="{T_IMAGESET_PATH}/icon_post_target.gif" alt="{L_PRIVATE_MESSAGE}" title="{L_PRIVATE_MESSAGE}" /> {L_MESSAGE_BY_AUTHOR} {history_row.MESSAGE_AUTHOR_FULL} &raquo;{history_row.SENT_DATE}</p>
+	<div class="content">{history_row.MESSAGE}</div>
+	<div id="message_{history_row.MSG_ID}" style="display: none;">{history_row.DECODED_MESSAGE}</div>
+</div>
+
+		</div>
+		<!-- IF not history_row.S_LAST_ROW --><hr /><!-- ENDIF -->
+	<!-- END history_row -->
+</div>
+
+<!-- <p><a href="#cp-main">{L_BACK_TO_TOP}</a></p> -->

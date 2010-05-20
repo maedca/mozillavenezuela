@@ -1,0 +1,9 @@
+Subject: Aviso borrado - "{POST_SUBJECT}"
+
+Hola {USERNAME},
+
+Está recibiendo esta notificación porque el aviso que envió por el mensaje "{POST_SUBJECT}" 
+en "{TOPIC_TITLE}" de "{SITENAME}" fue borrado por un moderador o por La Administración. 
+
+
+{EMAIL_SIG}

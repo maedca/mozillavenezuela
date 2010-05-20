@@ -1,0 +1,68 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h1>{L_TITLE}</h1>
+<p class="panel">{L_BOOKMARKS_EXPLAIN}</p>
+
+<!-- IF S_NO_DISPLAY_BOOKMARKS -->
+	<p class="error">{L_BOOKMARKS_DISABLED}</p>
+<!-- ELSE -->
+
+	<!-- IF .topicrow -->
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+	<div class="display-actions">
+		<!-- DEFINE $TOTAL = '{TOTAL_TOPICS}' -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+	<table class="normal-table"><thead>
+		<tr>
+			<th>{L_BOOKMARKS}</th>
+			<td class="lastpost">{L_LAST_POST}</td>
+			<td class="mark-col">{L_MARK} <input type="checkbox" id="t_all" onclick="marklist_all('ucp', 't[', 't_all');" title="{L_MARK_ALL}" /></td>
+		</tr>
+	</thead>
+	<tbody>
+
+	<!-- BEGIN topicrow -->
+		<tr<!-- IF topicrow.S_TOPIC_REPORTED --> class="reported"<!-- ENDIF -->>
+			<!-- IF topicrow.S_DELETED_TOPIC -->
+				<th>{L_DELETED_TOPIC}</th>
+				<td class="lastpost"></td>
+				<td class="mark-col"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" /></td>
+			<!-- ELSE -->
+				<th title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
+					<img src="{topicrow.TOPIC_FOLDER_IMG_SRC}" alt="" />
+					<!-- IF topicrow.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}" alt="{topicrow.TOPIC_FOLDER_IMG_ALT}" /><!-- ENDIF -->
+					<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+					<div class="desc">
+						<!-- IF topicrow.PAGINATION --><strong class="pagination">{topicrow.PAGINATION}</strong><!-- ENDIF -->
+						<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}
+					</div>
+				</th>
+				<td class="lastpost">{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
+					<a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a><div>{topicrow.LAST_POST_TIME}</div>
+				</td>
+				<td class="mark-col"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" onclick="marklist_each('ucp', 't[', 't_all');" /></td>
+			<!-- ENDIF -->
+		</tr>
+	<!-- END topicrow -->
+	</tbody></table>
+	<div class="display-actions">
+		<div class="buttons">
+			<input type="submit" name="unbookmark" value="{L_REMOVE_BOOKMARK_MARKED}" />
+			{S_FORM_TOKEN}
+		</div>
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+</form>
+	<!-- ELSE -->
+		<p class="no-entries">{L_NO_BOOKMARKS}</p>
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<!-- INCLUDE ucp_footer.html -->

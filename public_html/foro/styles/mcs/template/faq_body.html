@@ -1,0 +1,48 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_FAQ_TITLE}</h1>
+
+
+<div class="panel" id="faqlinks">
+		<div class="column1">
+		<!-- BEGIN faq_block -->
+			<!-- IF faq_block.SWITCH_COLUMN or (SWITCH_COLUMN_MANUALLY and faq_block.S_ROW_COUNT == 4) -->
+				</div>
+
+				<div class="column2">
+			<!-- ENDIF -->
+
+			<dl class="faq">
+				<dt class="h3 subheadline"><strong>{faq_block.BLOCK_TITLE}</strong></dt>
+				<!-- BEGIN faq_row -->
+					<dd><a href="#f{faq_block.S_ROW_COUNT}r{faq_block.faq_row.S_ROW_COUNT}">{faq_block.faq_row.FAQ_QUESTION}</a></dd>
+				<!-- END faq_row -->
+			</dl>
+		<!-- END faq_block -->
+		</div>
+</div>
+
+
+
+<div class="clear"></div>
+
+<!-- BEGIN faq_block -->
+	<div class="panel">
+
+		<div class="content">
+			<h1>{faq_block.BLOCK_TITLE}</h1>
+			<!-- BEGIN faq_row -->
+				<dl class="faq">
+					<dt id="f{faq_block.S_ROW_COUNT}r{faq_block.faq_row.S_ROW_COUNT}"><strong>{faq_block.faq_row.FAQ_QUESTION}</strong></dt>
+					<dd>{faq_block.faq_row.FAQ_ANSWER}</dd>
+					<dd><a href="#faqlinks" class="top2">{L_BACK_TO_TOP}</a></dd>
+				</dl>
+				<!-- IF not faq_block.faq_row.S_LAST_ROW --><hr /><!-- ENDIF -->
+			<!-- END faq_row -->
+		</div>
+
+	</div>
+<!-- END faq_block -->
+
+<!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE overall_footer.html -->

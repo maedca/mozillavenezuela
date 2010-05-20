@@ -1,0 +1,72 @@
+<!-- INCLUDE mcp_header.html -->
+
+<form id="mcp" method="post" action="{S_MCP_ACTION}">
+
+<!-- IF not S_PM -->
+<div style="margin-bottom: 2em">
+	<label for="fo">{L_FORUM}: <select name="f" id="fo">{S_FORUM_OPTIONS}</select></label>
+	<input type="submit" name="sort" value="{L_GO}" />
+	{S_FORM_TOKEN}
+</div>
+<!-- ENDIF -->
+
+<h1>{L_TITLE}</h1>
+
+<p class="panel">{L_EXPLAIN}</p>
+
+<!-- IF .postrow -->
+	<div class="display-actions">
+		<!-- DEFINE $TOTAL = '{TOTAL_REPORTS}' -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th>{L_VIEW_DETAILS}</th>
+				<td class="moderation">{L_REPORTED}</td>
+				<!-- IF not S_PM --><td>{L_FORUM}</td><!-- ENDIF -->
+				<td class="mark-col">{L_MARK} <input type="checkbox" id="report_id_list_all" onclick="marklist_all('mcp', 'report_id_list[', 'report_id_list_all');" title="{L_MARK_ALL}" /></td>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- BEGIN postrow -->
+				<tr>
+					<th>
+						<a href="{postrow.U_VIEW_DETAILS}" class="topictitle"><!-- IF S_PM -->{postrow.PM_SUBJECT}<!-- ELSE -->{postrow.POST_SUBJECT}<!-- ENDIF --></a> {postrow.ATTACH_ICON_IMG}
+						<div class="desc">{L_POST_BY_AUTHOR} {postrow.POST_AUTHOR_FULL} &raquo; {postrow.POST_TIME}</div>
+						<!-- IF S_PM --><div class="desc">{L_MESSAGE_TO} {postrow.RECIPIENTS}</div><!-- ENDIF -->
+					</th>
+					<td class="moderation">{L_POST_BY_AUTHOR} {postrow.REPORTER_FULL}<div>{postrow.REPORT_TIME}</div></td>
+					<!-- IF not S_PM --><td><a href="{postrow.U_VIEWFORUM}">{postrow.FORUM_NAME}</a></td><!-- ENDIF -->
+					<td class="mark-col"><input type="checkbox" name="report_id_list[]" value="{postrow.REPORT_ID}" onclick="marklist_each('mcp', 'report_id_list[', 'report_id_list_all');" /></td>
+				</tr>
+			<!-- END postrow -->
+		</tbody>
+	</table>
+
+	<fieldset class="display-options">
+		<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label>
+		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label><label>{S_SELECT_SORT_DIR}</label>
+		<!-- IF TOPIC_ID --><label><input type="checkbox" class="radio" name="t" value="{TOPIC_ID}" checked="checked" /> <strong>{L_ONLY_TOPIC}</strong></label><!-- ENDIF -->
+		<input type="submit" name="sort" value="{L_GO}" />
+	</fieldset>
+
+	<div class="display-actions">
+		<div class="buttons">
+			<input type="submit" value="{L_DELETE_REPORTS}" name="action[delete]" />
+			<!-- IF not S_CLOSED --> <input type="submit" name="action[close]" value="{L_CLOSE_REPORTS}" /><!-- ENDIF -->
+		</div>
+
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+<!-- ELSE -->
+	<p class="no-entries">{L_NO_REPORTS}</p>
+<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

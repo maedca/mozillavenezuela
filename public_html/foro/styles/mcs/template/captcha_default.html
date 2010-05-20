@@ -1,0 +1,18 @@
+<!-- IF S_TYPE == 1 --><!-- CONFIRM_REG, includes/constants.php:149 -->
+<h2>{L_CONFIRMATION}</h2>
+<div class="panel">
+	<p>{L_CONFIRM_EXPLAIN}</p>
+	<dl class="kvlist ucp-register">
+<!-- ENDIF -->
+
+	<dt><label for="confirm_code">{L_CONFIRM_CODE}:</label></dt>
+	<dd><img src="{CONFIRM_IMAGE_LINK}" alt="{L_CONFIRM_CODE}" /></dd>
+	<dd><input type="text" name="confirm_code" id="confirm_code" size="8" maxlength="8" tabindex="{$CAPTCHA_TAB_INDEX}" title="{L_CONFIRM_CODE}" />
+	<!-- IF S_CONFIRM_REFRESH --><input type="submit" name="refresh_vc" id="refresh_vc" value="{L_VC_REFRESH}" /><!-- ENDIF -->
+	<input type="hidden" name="confirm_id" id="confirm_id" value="{CONFIRM_ID}" />
+	<div class="explain">{L_CONFIRM_CODE_EXPLAIN}</div></dd>
+
+<!-- IF S_TYPE == 1 -->
+	</dl>
+</div>
+<!-- ENDIF -->

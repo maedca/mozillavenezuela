@@ -1,0 +1,302 @@
+<!-- INCLUDE mcp_header.html -->
+
+<!-- IF S_MCP_REPORT -->
+	<!-- IF S_PM -->
+	<h1>{L_PM_REPORT_DETAILS}</h1>
+	<!-- ELSE -->
+	<h1>{L_REPORT_DETAILS}</h1>
+	<!-- ENDIF -->
+
+	<div id="report" class="post">
+
+		<div class="postbody">
+			<h2>{L_REPORT_REASON}: {REPORT_REASON_TITLE}</h2>
+			<p class="author">{L_REPORTED} {L_POST_BY_AUTHOR} {REPORTER_FULL} &raquo; {REPORT_DATE}</p>
+	<form method="post" id="mcp_report" action="{S_CLOSE_ACTION}">
+
+	<div>
+		<!-- IF S_POST_REPORTED -->
+			<input type="submit" value="{L_CLOSE_REPORT}" name="action[close]" />
+		<!-- ENDIF -->
+		<input type="submit" value="{L_DELETE_REPORT}" name="action[delete]" />
+		<input type="hidden" name="report_id_list[]" value="{REPORT_ID}" />
+		{S_FORM_TOKEN}
+	</div>
+	</form>
+		<!-- IF not S_POST_REPORTED -->
+			<p class="rules">{L_REPORT_CLOSED}</p>
+		<!-- ENDIF -->
+			<div class="content">
+			<!-- IF REPORT_TEXT -->
+				{REPORT_TEXT}
+			<!-- ELSE -->
+				{REPORT_REASON_DESCRIPTION}
+			<!-- ENDIF -->
+			</div>
+		</div>
+
+	</div>
+
+	<hr />
+
+<!-- ELSE -->
+	<h1>{L_POST_DETAILS}</h1>
+<!-- ENDIF -->
+
+<div class="post">
+
+	<div class="postbody">
+		<!-- IF U_EDIT -->
+		<ul class="linklist actionlist">
+			<li class="edit-icon"><a href="{U_EDIT}" title="{L_EDIT_POST}">{L_EDIT_POST}</a></li>
+		</ul>
+		<!-- ENDIF -->
+
+		<h2><a href="{U_VIEW_POST}">{POST_SUBJECT}</a></h2>
+		<p class="author">
+			{MINI_POST_IMG} {L_POST_BY_AUTHOR} {POST_AUTHOR_FULL} &raquo; {POST_DATE}
+			<!-- IF S_PM -->
+				<!-- IF S_TO_RECIPIENT --> &bull; {L_TO}:
+					<!-- BEGIN to_recipient -->
+						<!-- IF to_recipient.NAME_FULL -->
+							{to_recipient.NAME_FULL}
+						<!-- ELSE -->
+							<a href="{to_recipient.U_VIEW}" style="color:<!-- IF to_recipient.COLOUR -->{to_recipient.COLOUR}<!-- ELSEIF to_recipient.IS_GROUP -->#0000FF<!-- ENDIF -->;">{to_recipient.NAME}</a>
+						<!-- ENDIF -->
+					<!-- END to_recipient -->
+				<!-- ENDIF -->
+				<!-- IF S_BCC_RECIPIENT --> &bull; {L_BCC}:
+					<!-- BEGIN bcc_recipient -->
+						<!-- IF bcc_recipient.NAME_FULL -->
+							{bcc_recipient.NAME_FULL}
+						<!-- ELSE -->
+							<a href="{bcc_recipient.U_VIEW}" style="color:<!-- IF bcc_recipient.COLOUR -->{bcc_recipient.COLOUR}<!-- ELSEIF bcc_recipient.IS_GROUP -->#0000FF<!-- ENDIF -->;">{bcc_recipient.NAME}</a>
+						<!-- ENDIF -->
+					<!-- END bcc_recipient -->
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+		</p>
+
+		<!-- IF S_POST_UNAPPROVED -->
+			<form method="post" id="mcp_approve" action="{U_APPROVE_ACTION}">
+
+			<p>
+				<input type="submit" value="{L_APPROVE}" name="action[approve]" />
+				<input type="submit" value="{L_DISAPPROVE}" name="action[disapprove]" />
+				<input type="hidden" name="post_id_list[]" value="{POST_ID}" />
+				{S_FORM_TOKEN}
+			</p>
+			</form>
+		<!-- ENDIF -->
+
+		<!-- IF S_MESSAGE_REPORTED -->
+			<p class="rules">
+				{REPORTED_IMG} <a href="{U_MCP_REPORT}"><strong>{L_MESSAGE_REPORTED}</strong></a>
+			</p>
+		<!-- ENDIF -->
+
+		<div class="content">
+			{POST_PREVIEW}
+		</div>
+
+		<!-- IF S_HAS_ATTACHMENTS -->
+			<dl class="attachbox">
+				<dt>{L_ATTACHMENTS}</dt>
+				<!-- BEGIN attachment -->
+					<dd>{attachment.DISPLAY_ATTACHMENT}</dd>
+				<!-- END attachment -->
+			</dl>
+		<!-- ENDIF -->
+
+		<!-- IF SIGNATURE -->
+			<div id="sig{POST_ID}" class="signature">{SIGNATURE}</div>
+		<!-- ENDIF -->
+
+		<!-- IF S_MCP_REPORT and S_CAN_VIEWIP -->
+			<hr />
+			<div class="content">{L_THIS_POST_IP}: <!-- IF U_WHOIS -->
+				<a href="{U_WHOIS}"><!-- IF POST_IPADDR -->{POST_IPADDR}<!-- ELSE -->{POST_IP}<!-- ENDIF --></a> (<!-- IF POST_IPADDR -->{POST_IP}<!-- ELSE --><a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a><!-- ENDIF -->)
+			<!-- ELSE -->
+				<!-- IF POST_IPADDR -->{POST_IPADDR} ({POST_IP})<!-- ELSE -->{POST_IP}<!-- IF U_LOOKUP_IP --> (<a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a>)<!-- ENDIF --><!-- ENDIF -->
+			<!-- ENDIF --></div>
+		<!-- ENDIF -->
+
+	</div>
+
+</div>
+
+<!-- IF S_CAN_LOCK_POST or S_CAN_DELETE_POST or S_CAN_CHGPOSTER -->
+
+	<h2>{L_MOD_OPTIONS}</h2>
+	<div class="panel">
+		<!-- IF S_CAN_CHGPOSTER -->
+			<form method="post" id="mcp_chgposter" action="{U_POST_ACTION}">
+
+			<dl class="kvlist mcp-post">
+				<dt><label>{L_CHANGE_POSTER}:</label></dt>
+				<!-- IF S_USER_SELECT --><dd><select name="u">{S_USER_SELECT}</select> <input type="submit" name="action[chgposter_ip]" value="{L_CONFIRM}" /></dd><!-- ENDIF -->
+				<dd style="margin-top:3px;">
+					<input type="text" name="username" value="" />
+					<input type="submit" name="action[chgposter]" value="{L_CONFIRM}" />
+					<div>[ <a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a> ]</div>
+				</dd>
+			</dl>
+			{S_FORM_TOKEN}
+			</form>
+		<!-- ENDIF -->
+
+		<!-- IF S_CAN_LOCK_POST or S_CAN_DELETE_POST -->
+			<form method="post" id="mcp" action="{U_MCP_ACTION}">
+
+			<dl class="kvlist mcp-post">
+				<dt><label>{L_MOD_OPTIONS}:</label></dt>
+				<dd><select name="action">
+					<!-- IF S_CAN_LOCK_POST --><!-- IF S_POST_LOCKED --><option value="unlock_post">{L_UNLOCK_POST} [{L_UNLOCK_POST_EXPLAIN}]</option><!-- ELSE --><option value="lock_post">{L_LOCK_POST} [{L_LOCK_POST_EXPLAIN}]</option><!-- ENDIF --><!-- ENDIF -->
+					<!-- IF S_CAN_DELETE_POST --><option value="delete_post">{L_DELETE_POST}</option><!-- ENDIF -->
+					</select> <input type="submit" value="{L_SUBMIT}" />
+				</dd>
+			</dl>
+			{S_FORM_TOKEN}
+			</form>
+		<!-- ENDIF -->
+
+	</div>
+<!-- ENDIF -->
+
+
+<!-- IF S_MCP_QUEUE or S_MCP_REPORT or RETURN_TOPIC -->
+	<div class="display-actions">
+		<ul class="linklist">
+			<!-- IF S_MCP_QUEUE -->
+				<li>{RETURN_QUEUE}</li>
+				<li>{RETURN_TOPIC_SIMPLE}</li>
+				<li>{RETURN_POST}</li>
+			<!-- ELSEIF S_MCP_REPORT -->
+				<li>{RETURN_REPORTS}</li>
+				<!-- IF not S_PM -->
+					<li><a href="{U_VIEW_POST}">{L_VIEW_POST}</a></li>
+					<li><a href="{U_VIEW_TOPIC}">{L_VIEW_TOPIC}</a></li>
+					<li><a href="{U_VIEW_FORUM}">{L_VIEW_FORUM}</a></li>
+				<!-- ENDIF -->
+			<!-- ELSE -->
+				<li>{RETURN_TOPIC}</li>
+			<!-- ENDIF -->
+		</ul>
+		<div class="display-actions-end"></div>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF not S_MCP_QUEUE -->
+
+	<!-- IF S_SHOW_USER_NOTES -->
+		<div class="panel" id="usernotes">
+
+			<form method="post" id="mcp_notes" action="{U_POST_ACTION}">
+
+			<!-- IF S_USER_NOTES -->
+				<h2>{L_FEEDBACK}</h2>
+
+				<!-- BEGIN usernotes -->
+					<span class="small"><strong>{L_REPORTED_BY}: {usernotes.REPORT_BY} &raquo; {usernotes.REPORT_AT}</strong></span>
+					<!-- IF S_CLEAR_ALLOWED --><div class="right-box"><input type="checkbox" name="marknote[]" value="{usernotes.ID}" /></div><!-- ENDIF -->
+					<div class="postbody">{usernotes.ACTION}</div>
+
+					<hr />
+				<!-- END usernotes -->
+
+				<!-- IF S_CLEAR_ALLOWED -->
+					<div>
+						<input type="submit" name="action[del_all]" value="{L_DELETE_ALL}" />
+						<input type="submit" name="action[del_marked]" value="{L_DELETE_MARKED}" />
+					</div>
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+
+			<h2>{L_ADD_FEEDBACK}</h2>
+			<p>{L_ADD_FEEDBACK_EXPLAIN}</p>
+
+			<fieldset>
+				<textarea name="usernote" rows="4" cols="76"></textarea>
+			</fieldset>
+
+			<div><input type="submit" name="action[add_feedback]" value="{L_SUBMIT}" />{S_FORM_TOKEN}</div>
+			</form>
+
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF S_SHOW_REPORTS -->
+		<div class="panel" id="reports">
+
+			<h2>{L_MCP_POST_REPORTS}</h2>
+
+			<!-- BEGIN reports -->
+				<span class="small"><strong>{L_REPORTED_BY}: <!-- IF reports.U_REPORTER --><a href="{reports.U_REPORTER}">{reports.REPORTER}</a><!-- ELSE -->{reports.REPORTER}<!-- ENDIF --> &raquo; {reports.REPORT_TIME}</strong></span>
+				<p><em>{reports.REASON_TITLE}: {reports.REASON_DESC}</em><!-- IF reports.REPORT_TEXT --><br />{reports.REPORT_TEXT}<!-- ENDIF --></p>
+			<!-- END reports -->
+
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF S_CAN_VIEWIP and not S_MCP_REPORT -->
+			<p id="ip">{L_THIS_POST_IP}: <!-- IF U_WHOIS -->
+				<a href="{U_WHOIS}"><!-- IF POST_IPADDR -->{POST_IPADDR}<!-- ELSE -->{POST_IP}<!-- ENDIF --></a> (<!-- IF POST_IPADDR -->{POST_IP}<!-- ELSE --><a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a><!-- ENDIF -->)
+			<!-- ELSE -->
+				<!-- IF POST_IPADDR -->{POST_IPADDR} ({POST_IP})<!-- ELSE -->{POST_IP}<!-- IF U_LOOKUP_IP --> (<a href="{U_LOOKUP_IP}">{L_LOOKUP_IP}</a>)<!-- ENDIF --><!-- ENDIF -->
+			<!-- ENDIF --></p>
+
+<!-- IF .userrow -->
+			<table class="normal-table">
+			<thead>
+			<tr>
+				<th class="name">{L_OTHER_USERS}</th>
+				<td class="posts">{L_POSTS}</td>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN userrow -->
+			<tr>
+				<th><!-- IF userrow.U_PROFILE --><a href="{userrow.U_PROFILE}">{userrow.USERNAME}</a><!-- ELSE -->{userrow.USERNAME}<!-- ENDIF --></th>
+				<td class="posts"><a href="{userrow.U_SEARCHPOSTS}" title="{L_SEARCH_POSTS_BY} {userrow.USERNAME}">{userrow.NUM_POSTS}</a></td>
+			</tr>
+			<!-- END userrow -->
+			</tbody>
+			</table>
+			<!-- ELSE -->
+				<p>
+					<strong>{L_NO_MATCHES_FOUND}</strong>
+				</p>
+<!-- ENDIF -->
+
+<!-- IF .iprow -->
+			<table class="normal-table">
+			<thead>
+			<tr>
+				<th class="name">{L_IPS_POSTED_FROM}</th>
+				<td class="posts">{L_POSTS}</td>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN iprow -->
+			<tr>
+				<th><!-- IF iprow.HOSTNAME --><a href="{iprow.U_WHOIS}">{iprow.HOSTNAME}</a> ({iprow.IP})<!-- ELSE --><a href="{iprow.U_WHOIS}">{iprow.IP}</a> (<a href="{iprow.U_LOOKUP_IP}">{L_LOOKUP_IP}</a>)<!-- ENDIF --></th>
+				<td class="posts">{iprow.NUM_POSTS}</td>
+			</tr>
+			<!-- END iprow -->
+			</tbody>
+			</table>
+			<!-- ELSE -->
+				<p>
+					<strong>{L_NO_MATCHES_FOUND}</strong>
+				</p>
+<!-- ENDIF -->
+
+			<p><a href="{U_LOOKUP_ALL}#ip">{L_LOOKUP_ALL}</a></p>
+
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<!-- IF S_TOPIC_REVIEW --><!-- INCLUDE posting_topic_review.html --><!-- ENDIF -->
+
+<!-- INCLUDE mcp_footer.html -->

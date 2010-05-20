@@ -1,0 +1,17 @@
+<form method="post" action="{U_QR_ACTION}">
+	<h2>{L_QUICKREPLY}</h2>
+	<div class="panel">
+		<dl class="kvlist">
+			<dt><label for="subject">{L_SUBJECT}:</label></dt>
+			<dd><input type="text" name="subject" id="subject" size="45" maxlength="64" tabindex="2" value="{SUBJECT}" /></dd>
+		</dl>
+		<div id="message-box">
+			<textarea style="height: 9em;" name="message" rows="7" cols="76" tabindex="3"></textarea>
+		</div>
+		<div>
+			{S_FORM_TOKEN}
+			{QR_HIDDEN_FIELDS}
+			<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" />
+		</div>
+	</div>
+</form>

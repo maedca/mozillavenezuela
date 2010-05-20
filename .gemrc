@@ -1,0 +1,6 @@
+--- 
+gem: --remote --gen-rdoc --run-tests
+gemhome: /home/mozillav/ruby/gems
+gempath: []
+
+rdoc: --inline-source --line-numbers

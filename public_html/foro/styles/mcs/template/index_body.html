@@ -1,0 +1,47 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF S_DISPLAY_SEARCH or (S_USER_LOGGED_IN and not S_IS_BOT) -->
+<!-- DEFINE $VIEWLINKLIST = 1 -->
+<!-- ENDIF -->
+
+<!-- INCLUDE forumlist_body.html -->
+
+<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+	<div class="metabox quick-login">
+		<h2>{L_LOGIN_LOGOUT}</h2>
+		<form method="post" action="{S_LOGIN_ACTION}" class="headerspace">
+			<p>
+				<label for="username">{L_USERNAME}:</label> <input type="text" name="username" id="username" size="10" title="{L_USERNAME}" />  
+				<label for="password">{L_PASSWORD}:</label> <input type="password" name="password" id="password" size="10" title="{L_PASSWORD}" />
+				<!-- IF S_AUTOLOGIN_ENABLED -->
+					<label for="autologin"><input type="checkbox" name="autologin" id="autologin" /> {L_LOG_ME_IN}</label>
+				<!-- ENDIF -->
+				<input type="submit" name="login" value="{L_LOGIN}" />
+			</p>
+		</form>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_ONLINE_LIST -->
+	<div class="metabox">
+	<!-- IF U_VIEWONLINE --><h2><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a></h2><!-- ELSE --><h2>{L_WHO_IS_ONLINE}</h2><!-- ENDIF -->
+	<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
+	<!-- IF LEGEND --><br />{L_LEGEND}: {LEGEND}<!-- ENDIF --></p>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST -->
+	<div class="metabox">
+	<h2>{L_BIRTHDAYS}</h2>
+	<p><!-- IF BIRTHDAY_LIST -->{L_CONGRATULATIONS}: <strong>{BIRTHDAY_LIST}</strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF --></p>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF NEWEST_USER -->
+	<div class="metabox">
+	<h2>{L_STATISTICS}</h2>
+	<p>{TOTAL_POSTS} &bull; {TOTAL_TOPICS} &bull; {TOTAL_USERS} &bull; {NEWEST_USER}</p>
+	<p>{CURRENT_TIME}<!-- IF S_USER_LOGGED_IN --> &bull; {LAST_VISIT_DATE}<!-- ENDIF --></p>
+	</div>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

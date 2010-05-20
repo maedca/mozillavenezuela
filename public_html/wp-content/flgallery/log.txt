@@ -1,0 +1,4 @@
+2010-03-27 16:33:25	Upgraded from 0 to 0.5.5
+2010-03-27 16:33:25	Activated flgallery 0.5.5
+2010-04-28 14:44:22	Upgraded from 0.5.5 to 0.6.4
+2010-04-28 14:44:22	Activated flgallery 0.6.4

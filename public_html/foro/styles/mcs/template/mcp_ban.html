@@ -1,0 +1,91 @@
+<!-- INCLUDE mcp_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+
+	var ban_length = new Array();
+		ban_length[-1] = '';
+	<!-- BEGIN ban_length -->
+		ban_length['{ban_length.BAN_ID}'] = '{ban_length.A_LENGTH}';
+	<!-- END ban_length -->
+
+	var ban_reason = new Array();
+		ban_reason[-1] = '';
+	<!-- BEGIN ban_reason -->
+		ban_reason['{ban_reason.BAN_ID}'] = '{ban_reason.A_REASON}';
+	<!-- END ban_reason -->
+
+	var ban_give_reason = new Array();
+		ban_give_reason[-1] = '';
+	<!-- BEGIN ban_give_reason -->
+		ban_give_reason['{ban_give_reason.BAN_ID}'] = '{ban_give_reason.A_REASON}';
+	<!-- END ban_give_reason -->
+
+	function display_details(option)
+	{
+		document.getElementById('unbangivereason').innerHTML = ban_give_reason[option];
+		document.getElementById('unbanreason').innerHTML = ban_reason[option];
+		document.getElementById('unbanlength').innerHTML = ban_length[option];
+	}
+
+// ]]>
+</script>
+
+<form id="mcp_ban" method="post" action="{U_ACTION}">
+
+<h1>{L_TITLE}</h1>
+
+	<h2>{L_TITLE}</h2>
+
+	<p class="panel">{L_EXPLAIN}</p>
+
+<div class="panel">
+	<dl class="kvlist mcp-ban">
+		<dt><label for="ban">{L_BAN_CELL}:</label></dt>
+		<dd><label for="ban"><textarea name="ban" id="ban" cols="40" rows="3">{BAN_QUANTIFIER}</textarea></label></dd>
+		<!-- IF S_USERNAME_BAN --><dd><strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong></dd><!-- ENDIF -->
+		<dt><label for="banlength">{L_BAN_LENGTH}:</label></dt>
+		<dd><label for="banlength"><select name="banlength" id="banlength" onchange="if(this.value==-1){document.getElementById('banlengthother').style.display = 'block';}else{document.getElementById('banlengthother').style.display='none';}">{S_BAN_END_OPTIONS}</select></label></dd>
+		<dd id="banlengthother" style="display: none;"><label><input type="text" name="banlengthother" /></label><div class="explain">{L_YEAR_MONTH_DAY}</div></dd>
+		<dt><label for="banreason">{L_BAN_REASON}:</label></dt>
+		<dd><input name="banreason" id="banreason" type="text" maxlength="255" /></dd>
+		<dt><label for="bangivereason">{L_BAN_GIVE_REASON}:</label></dt>
+		<dd><input name="bangivereason" id="bangivereason" type="text" maxlength="255" /></dd>
+		<dt><label for="banexclude0">{L_BAN_EXCLUDE}:</label></dt>
+		<dd>
+			<label for="banexclude1"><input type="radio" name="banexclude" id="banexclude1" value="1" /> {L_YES}</label> 
+			<label for="banexclude0"><input type="radio" name="banexclude" id="banexclude0" value="0" checked="checked" /> {L_NO}</label>
+			<div class="explain">{L_BAN_EXCLUDE_EXPLAIN}</div>
+		</dd>
+	</dl>
+
+</div>
+
+<div><input type="submit" name="bansubmit" value="{L_SUBMIT}" />{S_HIDDEN_FIELDS}{S_FORM_TOKEN}</div>
+
+	<h2>{L_UNBAN_TITLE}</h2>
+
+	<p class="panel">{L_UNBAN_EXPLAIN}</p>
+
+	<!-- IF S_BANNED_OPTIONS -->
+	<div class="panel">
+		<dl class="kvlist mcp-ban">
+			<dt><label for="unban">{L_BAN_CELL}:</label></dt>
+			<dd><select name="unban[]" id="unban" multiple="multiple" size="5" onchange="if (this.selectedIndex != -1) {display_details(this.options[this.selectedIndex].value);}">{BANNED_OPTIONS}</select></dd>
+			<dt>{L_BAN_LENGTH}:</dt>
+			<dd><strong id="unbanlength"></strong>&nbsp;</dd>
+			<dt>{L_BAN_REASON}:</dt>
+			<dd><strong id="unbanreason"></strong>&nbsp;</dd>
+			<dt>{L_BAN_GIVE_REASON}:</dt>
+			<dd><strong id="unbangivereason"></strong>&nbsp;</dd>
+		</dl>
+	</div>
+
+	<div><input type="submit" name="unbansubmit" value="{L_SUBMIT}" />{S_HIDDEN_FIELDS}</div>
+
+	<!-- ELSE -->
+		<p class="no-entries">{L_NO_BAN_CELL}</p>
+	<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

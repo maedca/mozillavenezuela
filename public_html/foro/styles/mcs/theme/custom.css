@@ -1,0 +1,95 @@
+a:link { color: #163754; }
+a:visited, a:hover { color: #8a9aa9; }
+
+#header {
+  background-color: #bfdee8;
+}
+
+#header #title,
+#header #title a,
+#header #sub-title,
+#header #sub-title a {
+  color: #163754;
+}
+
+#header-bar {
+  background-color: #163754;
+}
+
+#header .nav li a {
+  color: white;
+  background-color: #163754;
+}
+
+#header .nav li a:hover {
+  background-color: #8A9AA9;
+}
+
+#header .nav li.current a {
+  background-color: #bfdee8;
+}
+
+/* :link,:visided due to IE 6 cascading */
+.toc li a:link, .toc li a:visited {
+  color: #163754;
+}
+
+.toc li a:hover {
+  color: #163754;
+}
+
+#header-bar .doc {
+  width: auto;
+}
+
+#header-bar .nav {
+  margin-right: 10px;
+}
+
+#header-bar .logo {
+  margin-left: 0.625em;
+}
+
+#header-bar {
+  background-image: url("./img/hb/hback1.png");
+  height: 41px;
+  line-height: 41px;
+}
+
+#header-bar .dino {
+  padding-bottom: 4px;
+}
+
+#header-bar .mozilla {
+  padding-bottom: 6px;
+}
+
+#header-bar .mcs-logo-dark {
+  display: none;
+}
+
+#header .doc {
+  background-image: url("./img/header/bgmnt.png");
+}
+
+#header {
+  background-image: url("./img/header/bgsidel.png");
+}
+
+#logo {
+  display: block;
+}
+
+#header, #header .doc {
+  height: 228px;
+}
+
+.doc {
+  width: 900px;
+  margin: 0 auto;
+}
+
+#footer {
+  min-height: 74px;
+}
+

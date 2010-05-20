@@ -1,0 +1,20 @@
+Subject: Activación de nueva clave
+
+Hola {USERNAME}
+
+Está recibiendo esta notificación porque usted (o alguien reemplazándole) solicitó una nueva clave 
+para su cuenta en "{SITENAME}". Si usted no lo solicitó por favor ignore esta notificación. 
+Si persiste la solicitud contacte con La Administración del Sitio.
+
+Para usar la nueva clave necesita activarla. Para ello visite el enlace siguiente.
+
+{U_ACTIVATE}
+
+Si no hay inconvenientes podrá identificarse mediante la siguiente nueva clave:
+
+Clave: {PASSWORD}
+
+Por supuesto posteriormente puede cambiar esta clave para su cuenta mediante el Panel de Control de Usuario. 
+Si tiene alguna dificultad contacte con La Administración del Sitio.
+
+{EMAIL_SIG}

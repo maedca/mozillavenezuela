@@ -1,0 +1,139 @@
+<!-- INCLUDE ucp_header.html -->
+
+<!-- IF PROMPT -->
+	<h1>{L_EXPORT_AS_CSV}</h1>
+	<form id="viewfolder" method="post" action="{S_PM_ACTION}">
+	<div class="panel">
+			<dl class="kvlist">
+				<dt><label for="delimiter">{L_DELIMITER}:</label></dt>
+				<dd><input type="text" id="delimiter" name="delimiter" value="," /></dd>
+				<dt><label for="enclosure">{L_ENCLOSURE}:</label></dt>
+				<dd><input type="text" id="enclosure" name="enclosure" value="&#034;" /></dd>
+			</dl>
+	</div>
+	<div>
+		<input type="hidden" name="export_option" value="CSV" />
+		<input type="submit" name="submit_export" value="{L_EXPORT_FOLDER}" />
+		{S_FORM_TOKEN}
+	</div>
+	</form>
+
+<!-- ELSE -->
+
+	<h1>{L_TITLE}<!-- IF CUR_FOLDER_NAME -->: {CUR_FOLDER_NAME}<!-- ENDIF --></h1>
+
+	<div class="panel">
+
+		<!-- IF FOLDER_STATUS and FOLDER_MAX_MESSAGES neq 0 --><p>{FOLDER_STATUS}</p><!-- ENDIF -->
+
+		<!-- PM row background color legend -->
+		<!-- IF S_SHOW_COLOUR_LEGEND -->
+			<dl class="pm-legend">
+				<dt>{L_MESSAGE_COLOURS}:</dt>
+				<!-- BEGIN pm_colour_info -->
+					<dd<!-- IF pm_colour_info.CLASS --> class="{pm_colour_info.CLASS}"<!-- ENDIF -->><!-- IF pm_colour_info.IMG -->{pm_colour_info.IMG} <!-- ENDIF -->{pm_colour_info.LANG}</dd>
+				<!-- END pm_colour_info -->
+			</dl>
+		<!-- ENDIF -->
+	</div>
+
+	<!-- IF NUM_REMOVED --><p class="panel notice">{RULE_REMOVED_MESSAGES}</p><!-- ENDIF -->
+
+	<!-- IF NUM_NOT_MOVED --><p class="panel notice">{NOT_MOVED_MESSAGES}<br />{RELEASE_MESSAGE_INFO}</p><!-- ENDIF -->
+
+	<!-- IF U_POST_NEW_TOPIC or .messagerow -->
+		<div class="display-actions">
+			<!-- IF U_POST_NEW_TOPIC -->
+				<div class="buttons">
+					<a href="{U_POST_NEW_TOPIC}" class="image-button" accesskey="n" title="{L_UCP_PM_COMPOSE}">{L_UCP_PM_COMPOSE}</a>
+				</div>
+			<!-- ENDIF -->
+
+			<!-- IF .messagerow -->
+				<!-- DEFINE $TOTAL = '{TOTAL_MESSAGES}' -->
+				<!-- INCLUDE pagination.html -->
+			<!-- ENDIF -->
+			<div class="display-actions-end"></div>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF .messagerow -->
+	<form id="viewfolder" method="post" action="{S_PM_ACTION}">
+
+		<table class="normal-table" id="messagelist">
+			<thead>
+				<tr>
+					<th>{L_MESSAGE}</th>
+					<td><!-- IF S_SHOW_RECIPIENTS -->{L_MESSAGE_TO}<!-- ELSE -->{L_MESSAGE_BY_AUTHOR}<!-- ENDIF --></td>
+					<td>{L_SENT_AT}</td>
+					<!-- IF S_UNREAD --><td></td><!-- ENDIF -->
+					<td class="mark-col">{L_MARK} <input type="checkbox" id="marked_msg_all" onclick="marklist_all('messagelist', 'marked_msg_id[]', 'marked_msg_all');" title="{L_MARK_ALL}" /></td>
+				</tr>
+		</thead>
+		<tbody>
+
+			<!-- BEGIN messagerow -->
+				<tr<!-- IF messagerow.PM_CLASS --> class="{messagerow.PM_CLASS}"<!-- ENDIF -->>
+					<th>
+						{messagerow.FOLDER_IMG}
+						<!-- IF messagerow.PM_ICON_URL and S_PM_ICONS --><img src="{messagerow.PM_ICON_URL}" alt="Icon" /><!-- ENDIF -->
+						<!-- IF messagerow.S_PM_DELETED -->
+							<a href="{messagerow.U_REMOVE_PM}" class="topictitle">{L_DELETE_MESSAGE}</a><br />
+							<span class="error">{L_MESSAGE_REMOVED_FROM_OUTBOX}</span>
+						<!-- ELSE -->
+							<a href="{messagerow.U_VIEW_PM}" class="topictitle">{messagerow.SUBJECT}</a>
+						<!-- ENDIF -->
+						<!-- IF messagerow.S_AUTHOR_DELETED -->
+							<em>{L_PM_FROM_REMOVED_AUTHOR}</em>
+						<!-- ENDIF -->
+
+						<!-- IF messagerow.S_TOPIC_REPORTED --><a href="{messagerow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+						{messagerow.ATTACH_ICON_IMG}<br />
+					</th>
+					<td><!-- IF S_SHOW_RECIPIENTS -->{messagerow.RECIPIENTS}<!-- ELSE -->{messagerow.MESSAGE_AUTHOR_FULL}<!-- ENDIF --></td>
+					<td class="info">{messagerow.SENT_TIME}</td>
+					<!-- IF S_UNREAD --><td class="info"><!-- IF messagerow.FOLDER --><a href="{messagerow.U_FOLDER}">{messagerow.FOLDER}</a><!-- ELSE -->{L_UNKNOWN_FOLDER}<!-- ENDIF --></td><!-- ENDIF -->
+					<td class="mark-col"><input type="checkbox" name="marked_msg_id[]" value="{messagerow.MESSAGE_ID}" onclick="marklist_each('messagelist', 'marked_msg_id[]', 'marked_msg_all');" /></td>
+				</tr>
+			<!-- END messagerow -->
+		</tbody>
+	</table>
+
+	<div class="display-actions">
+		<div class="action-select">
+			<label for="export_option">
+				<select name="export_option" id="export_option">
+					<option value="CSV">{L_EXPORT_AS_CSV}</option>
+					<option value="CSV_EXCEL">{L_EXPORT_AS_CSV_EXCEL}</option>
+					<option value="XML">{L_EXPORT_AS_XML}</option>
+				</select>
+			</label>
+			<input type="submit" name="submit_export" value="{L_GO}" />
+		</div>
+		<!-- INCLUDE pagination.html -->
+		<div class="action-select-mark">
+			<select name="mark_option">{S_MARK_OPTIONS}{S_MOVE_MARKED_OPTIONS}</select>
+			<input type="submit" name="submit_mark" value="{L_GO}" />
+		</div>
+		<div class="display-actions-end"></div>{S_FORM_TOKEN}
+	</div>
+
+	<fieldset class="display-options">
+		<label>{L_DISPLAY}: {S_SELECT_SORT_DAYS}</label>
+		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+		<label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" /></label>
+		<input type="hidden" name="cur_folder_id" value="{CUR_FOLDER_ID}" />
+	</fieldset>
+	</form>
+	<!-- ELSE -->
+		<p class="no-entries">
+			<!-- IF S_COMPOSE_PM_VIEW and S_NO_AUTH_SEND_MESSAGE -->
+				<!-- IF S_USER_NEW -->{L_USER_NEW_PERMISSION_DISALLOWED}<!-- ELSE -->{L_NO_AUTH_SEND_MESSAGE}<!-- ENDIF -->
+			<!-- ELSE -->
+				{L_NO_MESSAGES}
+			<!-- ENDIF -->
+		</p>
+	<!-- ENDIF -->
+
+<!-- ENDIF -->
+<!-- INCLUDE ucp_footer.html -->

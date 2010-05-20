@@ -1,0 +1,18 @@
+<!-- IF S_TYPE == 1 -->
+<h2>{L_CONFIRMATION}</h2>
+<div class="panel">
+
+	<dl class="kvlist ucp-register">
+<!-- ENDIF -->
+
+	<dt><label for="answer">{QA_CONFIRM_QUESTION}:</label></dt>
+	<dd>
+		<input type="text" tabindex="{$CAPTCHA_TAB_INDEX}" name="qa_answer" id="answer" size="45" title="{L_ANSWER}" />
+		<input type="hidden" name="qa_confirm_id" id="qa_confirm_id" value="{QA_CONFIRM_ID}" />
+		<div class="explain">{L_CONFIRM_QUESTION_EXPLAIN}</div>
+	</dd>
+
+<!-- IF S_TYPE == 1 -->
+	</dl>
+</div>
+<!-- ENDIF -->

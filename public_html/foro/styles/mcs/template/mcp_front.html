@@ -1,0 +1,146 @@
+<!-- INCLUDE mcp_header.html -->
+
+<h1>{PAGE_TITLE}</h1>
+
+<!-- IF S_SHOW_UNAPPROVED -->
+
+	<form id="mcp_queue" method="post" action="{S_MCP_QUEUE_ACTION}">
+
+
+		<!-- IF .unapproved -->
+			<table class="normal-table">
+				<thead>
+					<tr>
+						<th>{L_LATEST_UNAPPROVED}<!-- IF S_HAS_UNAPPROVED_POSTS --><div class="desc">{L_UNAPPROVED_TOTAL}</div><!-- ENDIF --></th>
+						<td class="moderation">{L_TOPIC}</td>
+						<td class="forum">{L_FORUM}</td>
+						<td class="mark-col">{L_MARK} <input type="checkbox" id="post_id_list_all" onclick="marklist_all('mcp_queue', 'post_id_list[', 'post_id_list_all');" title="{L_MARK_ALL}" /></td>
+					</tr>
+				</thead>
+				<tbody>
+
+			<!-- BEGIN unapproved -->
+				<tr>
+					<th>
+						<a href="{unapproved.U_POST_DETAILS}" class="topictitle">{unapproved.SUBJECT}</a> {unapproved.ATTACH_ICON_IMG}
+						<div class="desc"><!-- IF report.PAGINATION --><strong class="pagination">{report.PAGINATION}</strong><!-- ENDIF -->
+						{L_POSTED} {L_POST_BY_AUTHOR} {unapproved.AUTHOR_FULL} &raquo; {unapproved.POST_TIME}</div>
+					</th>
+					<td class="moderation"><a href="{unapproved.U_TOPIC}">{unapproved.TOPIC_TITLE}</a> [<a href="{unapproved.U_MCP_TOPIC}">{L_MODERATE}</a>]</td>
+					<td class="forum"><!-- IF unapproved.U_FORUM --><a href="{unapproved.U_FORUM}">{unapproved.FORUM_NAME}</a><!-- ELSE -->{unapproved.FORUM_NAME}<!-- ENDIF --><!-- IF unapproved.U_MCP_FORUM --> [<a href="{unapproved.U_MCP_FORUM}">{L_MODERATE}</a>]<!-- ENDIF -->
+					</td>
+
+			 		<td class="mark-col"><input type="checkbox" name="post_id_list[]" value="{unapproved.POST_ID}" onclick="marklist_each('mcp_queue', 'post_id_list[', 'post_id_list_all');" /></td>
+				</tr>
+			<!-- END unapproved -->
+			</tbody></table>
+		<!-- ELSE -->
+			<p class="panel">{L_UNAPPROVED_POSTS_ZERO_TOTAL}</p>
+		<!-- ENDIF -->
+
+	<div>{S_FORM_TOKEN}</div>
+
+	<!-- IF .unapproved -->
+	<div class="display-actions"><div class="buttons">
+		{S_HIDDEN_FIELDS}
+		<input type="submit" name="action[disapprove]" value="{L_DISAPPROVE}" />
+		<input type="submit" name="action[approve]" value="{L_APPROVE}" />
+	</div><div class="display-actions-end"></div></div>
+	<!-- ENDIF -->
+		</form>
+<!-- ENDIF -->
+
+<!-- IF S_SHOW_REPORTS -->
+
+		<!-- IF .report -->
+			<table class="normal-table">
+				<thead>
+					<tr>
+						<th>{L_LATEST_REPORTED}
+		<!-- IF S_HAS_REPORTS --><div class="desc">{L_REPORTS_TOTAL}</div><!-- ENDIF --><!--{L_VIEW_DETAILS}--></th>
+						<td class="moderation">{L_REPORTED}</td>
+						<td class="forum">{L_FORUM}</td>
+					</tr>
+				</thead>
+				<tbody>
+
+			<!-- BEGIN report -->
+				<tr>
+					<th>
+						<a href="{report.U_POST_DETAILS}#reports" class="topictitle">{report.SUBJECT}</a> {report.ATTACH_ICON_IMG}
+						<div class="desc">{L_POSTED} {L_POST_BY_AUTHOR} {report.AUTHOR_FULL} &raquo; {report.POST_TIME}</div>
+					</th>
+					<td class="moderation">
+						{L_POST_BY_AUTHOR} {report.REPORTER_FULL}<div>{L_REPORTED_ON_DATE} {report.REPORT_TIME}</div></td>
+					<td class="forum"><a href="{report.U_FORUM}">{report.FORUM_NAME}</a></td>
+				</tr>
+			<!-- END report -->
+			</tbody></table>
+		<!-- ELSE -->
+			<p class="panel">{L_REPORTS_ZERO_TOTAL}</p>
+		<!-- ENDIF -->
+
+<!-- ENDIF -->
+
+<!-- IF S_SHOW_PM_REPORTS -->
+	<!-- IF .pm_report -->
+		<table class="normal-table">
+			<thead>
+				<tr>
+					<th>{L_LATEST_REPORTED_PMS}<!-- IF S_HAS_PM_REPORTS --><div class="desc">{L_PM_REPORTS_TOTAL}</div><!-- ENDIF --></th>
+					<td class="moderation">{L_REPORTER}</td>
+					</tr>
+			</thead>
+			<tbody>
+				<!-- BEGIN pm_report -->
+					<tr>
+						<th>
+							<a href="{pm_report.U_PM_DETAILS}" class="topictitle">{pm_report.PM_SUBJECT}</a> {pm_report.ATTACH_ICON_IMG}
+							<div class="desc">{L_MESSAGE_BY_AUTHOR} {pm_report.PM_AUTHOR_FULL} &raquo; {pm_report.PM_TIME}</div>
+							<div class="desc">{L_MESSAGE_TO} {pm_report.RECIPIENTS}</div>
+						</th>
+						<td class="moderation">
+							{L_REPORTED} {L_POST_BY_AUTHOR} {pm_report.REPORTER_FULL}<div>{L_REPORTED_ON_DATE} {pm_report.REPORT_TIME}</div>
+						</td>
+					</tr>
+				<!-- END pm_report -->
+			</tbody>
+		</table>
+	<!-- ELSE -->
+		<p class="panel">{L_PM_REPORTS_ZERO_TOTAL}</p>
+	<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- IF S_SHOW_LOGS -->
+
+<!-- IF .log -->
+		<table class="normal-table">
+		<thead>
+		<tr>
+			<th class="name">{L_LATEST_LOGS}</th>
+			<td class="username">{L_USERNAME}</td>
+			<td class="ipaddr">{L_IP}</td>
+			<td class="actionlinks">{L_ACTIONS}</td>
+			<td class="date">{L_TIME}</td>
+		</tr>
+		</thead>
+		<tbody>
+	<!-- BEGIN log -->
+		<tr>
+			<th>{log.ACTION}</th>
+			<td class="username">{log.USERNAME}</td>
+			<td class="ipaddr">{log.IP}</td>
+			<td class="actionlinks"><!-- IF log.U_VIEW_TOPIC --><div><a href="{log.U_VIEW_TOPIC}" title="{L_VIEW_TOPIC}">{L_VIEW_TOPIC}</a></div><!-- ENDIF -->
+			<!-- IF log.U_VIEWLOGS --><div><a href="{log.U_VIEWLOGS}">{L_VIEW_TOPIC_LOGS}</a></div><!-- ENDIF --></td>
+			<td class="date">{log.TIME}</td>
+		</tr>
+	<!-- END log -->
+		</tbody>
+		</table>
+
+<!-- ELSE -->
+		<p class="panel">{L_NO_ENTRIES}</p>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- INCLUDE mcp_footer.html -->

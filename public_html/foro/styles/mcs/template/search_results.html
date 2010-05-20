@@ -1,0 +1,126 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1><!-- IF SEARCH_TITLE -->{SEARCH_TITLE}<!-- ELSE -->{SEARCH_MATCHES}<!-- ENDIF --><!-- IF SEARCH_WORDS -->: <a href="{U_SEARCH_WORDS}">{SEARCH_WORDS}</a><!-- ENDIF --></h1>
+<!-- IF IGNORED_WORDS --> <p>{L_IGNORED_TERMS}: <strong>{IGNORED_WORDS}</strong></p><!-- ENDIF -->
+
+<!-- IF SEARCH_TOPIC -->
+	<p><a class="{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH_TOPIC}">{L_RETURN_TO}: {SEARCH_TOPIC}</a></p>
+<!-- ELSE -->
+	<p><a class="{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH}" title="{L_SEARCH_ADV}">{L_RETURN_TO_SEARCH_ADV}</a></p>
+<!-- ENDIF -->
+
+<!-- IF .searchresults -->
+
+	<div class="display-actions">
+
+		<!-- IF SEARCH_IN_RESULTS -->
+			<div class="search-box">
+				<form method="post" action="{S_SEARCH_ACTION}">
+					<fieldset>
+						<label for="add_keywords">{L_SEARCH_IN_RESULTS}: <input type="text" name="add_keywords" id="add_keywords" value="" /></label>
+						<input type="submit" name="submit" value="{L_SEARCH}" />
+					</fieldset>
+				</form>
+			</div>
+		<!-- ENDIF -->
+
+		<!-- DEFINE $TOTAL = '{SEARCH_MATCHES}' -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+	<!-- IF S_SHOW_TOPICS -->
+
+		<table class="normal-table">
+			<thead>
+				<tr>
+					<th>{L_TOPICS}</th>
+					<td class="posts">{L_REPLIES}</td>
+					<td class="views">{L_VIEWS}</td>
+					<td class="lastpost">{L_LAST_POST}</td>
+				</tr>
+			</thead>
+			<tbody>
+
+		<!-- BEGIN searchresults -->
+				<tr>
+					<th>
+						<img src="{searchresults.TOPIC_FOLDER_IMG_SRC}" alt="" />
+						<!-- IF searchresults.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}" alt="" /><!-- ENDIF -->
+						<!-- IF searchresults.S_UNREAD_TOPIC --><a href="{searchresults.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
+						<a href="{searchresults.U_VIEW_TOPIC}" class="topictitle">{searchresults.TOPIC_TITLE}</a> {searchresults.ATTACH_ICON_IMG}
+						<!-- IF searchresults.S_TOPIC_UNAPPROVED or searchresults.S_POSTS_UNAPPROVED --><a href="{searchresults.U_MCP_QUEUE}">{searchresults.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+						<!-- IF searchresults.S_TOPIC_REPORTED --><a href="{searchresults.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+						<div class="desc"><!-- IF searchresults.PAGINATION --><strong class="pagination">{searchresults.PAGINATION}</strong><!-- ENDIF -->
+						{L_POST_BY_AUTHOR} {searchresults.TOPIC_AUTHOR_FULL} &raquo; {searchresults.FIRST_POST_TIME}
+						<!-- IF not searchresults.S_TOPIC_GLOBAL -->{L_IN} <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_TITLE}</a><!-- ELSE --> ({L_GLOBAL})<!-- ENDIF --></div>
+					</th>
+					<td class="posts">{searchresults.TOPIC_REPLIES}</td>
+					<td class="views">{searchresults.TOPIC_VIEWS}</td>
+					<td class="lastpost">
+						{L_POST_BY_AUTHOR} {searchresults.LAST_POST_AUTHOR_FULL}
+						<!-- IF not S_IS_BOT --><a href="{searchresults.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><div>{searchresults.LAST_POST_TIME}</div>
+					</td>
+				</tr>
+		<!-- END searchresults -->
+		</tbody></table>
+
+	<!-- ELSE -->
+
+		<!-- BEGIN searchresults -->
+			<div class="search post<!-- IF searchresults.S_POST_REPORTED --> reported<!-- ENDIF -->">
+				<!-- IF searchresults.S_IGNORE_POST -->
+					<div class="postbody">{searchresults.L_IGNORE_POST}</div>
+				<!-- ELSE -->
+					<dl class="postprofile">
+						<dt>{searchresults.POST_AUTHOR_FULL}</dt>
+						<dd>&nbsp;</dd>
+						<!-- IF searchresults.FORUM_TITLE -->
+							<dd>{L_FORUM}: <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_TITLE}</a></dd>
+							<dd>{L_TOPIC}: <a href="{searchresults.U_VIEW_TOPIC}">{searchresults.TOPIC_TITLE}</a></dd>
+						<!-- ELSE -->
+							<dd>{L_GLOBAL}: <a href="{searchresults.U_VIEW_TOPIC}">{searchresults.TOPIC_TITLE}</a></dd>
+						<!-- ENDIF -->
+						<dd>{L_REPLIES}: <strong>{searchresults.TOPIC_REPLIES}</strong></dd>
+						<dd>{L_VIEWS}: <strong>{searchresults.TOPIC_VIEWS}</strong></dd>
+					</dl>
+
+					<div class="postbody">
+						<h2><a href="{searchresults.U_VIEW_POST}">{searchresults.POST_SUBJECT}</a></h2>
+						<p class="author">
+							<a href="{searchresults.U_VIEW_POST}">
+								<img src="{T_IMAGESET_PATH}/icon_post_target.gif"
+									alt="{L_POST}" title="{L_POST}" />
+							</a>{L_POST_BY_AUTHOR} <strong>{searchresults.POST_AUTHOR_FULL}</strong> &raquo; {searchresults.POST_DATE}
+						</p>
+						<div class="content">{searchresults.MESSAGE}</div>
+						<div><a href="{searchresults.U_VIEW_POST}" class="image-button">{L_JUMP_TO_POST}</a></div>
+					</div>
+					<div class="clear"></div>
+				<!-- ENDIF -->
+			</div>
+			<hr />
+		<!-- END searchresults -->
+	<!-- ENDIF -->
+
+	<!-- IF S_SELECT_SORT_DAYS or S_SELECT_SORT_KEY -->
+		<form method="post" action="{S_SEARCH_ACTION}">
+			<fieldset class="display-options">
+				<label><!-- IF S_SHOW_TOPICS -->{L_DISPLAY_POSTS}<!-- ELSE -->{L_SORT_BY}</label><label><!-- ENDIF --> {S_SELECT_SORT_DAYS}<!-- IF S_SELECT_SORT_KEY --></label> <label>{S_SELECT_SORT_KEY}</label>
+				<label>{S_SELECT_SORT_DIR} <!-- ELSE --></label><!-- ENDIF --><input type="submit" name="sort" value="{L_GO}" /></label>
+			</fieldset>
+		</form>
+	<!-- ENDIF -->
+
+	<div class="display-actions">
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+<!-- ELSE -->
+	<div class="no-entries">{L_NO_SEARCH_RESULTS}</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE jumpbox.html -->
+
+<!-- INCLUDE overall_footer.html -->

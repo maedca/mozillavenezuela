@@ -1,0 +1,12 @@
+<div class="pagination">
+	<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}">{L_PREVIOUS}</a> : <!-- ENDIF -->
+	<!-- IF S_VIEWTOPIC and U_VIEW_UNREAD_POST and not S_IS_BOT --><a href="{U_VIEW_UNREAD_POST}">{L_VIEW_UNREAD_POST}</a> : <!-- ENDIF -->
+	{$TOTAL}<!-- IF $FIX_UCP_ATTACHMENTS --> {L_TITLE}<!-- ENDIF --> :
+	<!-- IF PAGINATION -->
+		<!-- <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> :--> {PAGINATION}
+	<!-- ELSE -->
+		{PAGE_NUMBER}
+	<!-- ENDIF -->
+	<!-- IF NEXT_PAGE --> : <a href="{NEXT_PAGE}">{L_NEXT}</a><!-- ENDIF -->
+	<span class="only-if-sort" style="display: none"> : <a href="#" onclick="toggleSort(); return false;">{L_SORT_BY}</a></span>
+</div>

@@ -1,0 +1,50 @@
+Return-path: <>
+Envelope-to: mozillav@sr1.supercp.com
+Delivery-date: Tue, 11 May 2010 07:02:47 -0400
+Received: from mailnull by sr1.supercp.com with local (Exim 4.69)
+	id 1OBnEd-0005Sg-9n
+	for mozillav@sr1.supercp.com; Tue, 11 May 2010 07:02:47 -0400
+X-Failed-Recipients: mo.ney@rothschildblue.com
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@sr1.supercp.com>
+To: mozillav@sr1.supercp.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1OBnEd-0005Sg-9n@sr1.supercp.com>
+Date: Tue, 11 May 2010 07:02:47 -0400
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  mo.ney@rothschildblue.com
+    SMTP error from remote mail server after RCPT TO:<mo.ney@rothschildblue.com>:
+    host rothschildblue.com [173.192.219.168]: 550-Verification failed for <mozillav@sr1.supercp.com>
+    550-Called:   216.119.128.66
+    550-Sent:     RCPT TO:<mozillav@sr1.supercp.com>
+    550-Response: 550-You do not have sufficient privileges to send mail to this address.  Please
+    550-550 authenticate and try again.
+    550 Sender verify failed
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <mozillav@sr1.supercp.com>
+Received: from mozillav by sr1.supercp.com with local (Exim 4.69)
+	(envelope-from <mozillav@sr1.supercp.com>)
+	id 1OBlKc-0004f9-5V
+	for mo.ney@rothschildblue.com; Tue, 11 May 2010 05:00:50 -0400
+To: mo.ney@rothschildblue.com
+Subject: =?UTF-8?Q?[Mozilla_Venezuela]_Tu_nombre_de_usuario_y_contrase=C3=B1a?=
+Date: Tue, 11 May 2010 09:00:50 +0000
+From: WordPress <wordpress@mozillavenezuela.org>
+Message-ID: <0238a2cb7a86d5c53552c4c279aed5fe@mozillavenezuela.org>
+X-Priority: 3
+X-Mailer: PHPMailer (phpmailer.sourceforge.net) [version 2.0.4]
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+
+Nombre de usuario: FxiiYy
+Contraseña: NkHpoEyyPdqb
+http://mozillavenezuela.org/wp-login.php
+

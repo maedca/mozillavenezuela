@@ -1,0 +1,4 @@
+Disk quotas for user mozillav (uid 1481): 
+     Filesystem  blocks   quota   limit   grace   files   quota   limit   grace
+       /dev/md2      12  1024000 1024000              10       0       0        
+       /dev/md4  159668  1024000 1024000            4964       0       0        

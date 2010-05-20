@@ -1,0 +1,48 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h1>{L_TITLE}</h1>
+
+<p class="panel">{L_UCP_WELCOME}</p>
+
+<!-- IF .topicrow -->
+
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th>{L_IMPORTANT_NEWS}</th>
+				<td class="lastpost">{L_LAST_POST}</td>
+			</tr>
+		</thead>
+		<tbody>
+	<!-- BEGIN topicrow -->
+			<tr>
+				<th>
+					<img src="{topicrow.TOPIC_FOLDER_IMG_SRC}" alt="" />
+					<!-- IF topicrow.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}" alt="" /><!-- ENDIF -->
+					<!-- IF topicrow.S_UNREAD --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+					<div class="desc"><!-- IF topicrow.PAGINATION --><strong class="pagination">{topicrow.PAGINATION}</strong><!-- ENDIF -->
+					<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}</div>
+				</th>
+				<td class="lastpost">{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
+					<a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <div>{topicrow.LAST_POST_TIME}</div>
+				</td>
+			</tr>
+	<!-- END topicrow -->
+	</tbody></table>
+<!-- ENDIF -->
+
+	<h2>{L_YOUR_DETAILS}</h2>
+
+	<dl class="kvlist ucp-main-front panel">
+		<dt>{L_JOINED}:</dt> <dd>{JOINED}</dd>
+		<dt>{L_VISITED}:</dt> <dd>{LAST_VISIT_YOU}</dd>
+		<dt>{L_TOTAL_POSTS}:</dt> <dd><!-- IF POSTS_PCT -->{POSTS}<!-- IF S_DISPLAY_SEARCH --> | <strong><a href="{U_SEARCH_USER}">{L_SEARCH_YOUR_POSTS}</a></strong><!-- ENDIF -->
+			<span class="details">({POSTS_DAY} / {POSTS_PCT})</span><!-- ELSE -->{POSTS}<!-- ENDIF --></dd>
+		<!-- IF ACTIVE_FORUM --><dt>{L_ACTIVE_IN_FORUM}:</dt> <dd><strong><a href="{U_ACTIVE_FORUM}">{ACTIVE_FORUM}</a></strong>
+			<span class="details">({ACTIVE_FORUM_POSTS} / {ACTIVE_FORUM_PCT})</span></dd><!-- ENDIF -->
+		<!-- IF ACTIVE_TOPIC --><dt>{L_ACTIVE_IN_TOPIC}:</dt> <dd><strong><a href="{U_ACTIVE_TOPIC}">{ACTIVE_TOPIC}</a></strong>
+			<span class="details">({ACTIVE_TOPIC_POSTS} / {ACTIVE_TOPIC_PCT})</span></dd><!-- ENDIF -->
+		<!-- IF WARNINGS --><dt>{L_YOUR_WARNINGS}:</dt> <dd class="error">{WARNING_IMG} [{WARNINGS}]</dd><!-- ENDIF -->
+	</dl>
+
+<!-- INCLUDE ucp_footer.html -->

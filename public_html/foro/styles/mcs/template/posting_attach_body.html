@@ -1,0 +1,22 @@
+<script type="text/javascript">
+function showHideAttachPanel() {
+	document.getElementById('attach-panel').style.display = document.getElementById('attach-panel-check').checked ? 'block' : 'none';
+	if (!document.getElementById('attach-panel-check').checked) {
+		document.getElementById('fileupload').value='';
+		document.getElementById('filecomment').value='';
+	}
+}
+</script>
+<div class="panel"><input type="checkbox" onclick="showHideAttachPanel();" id="attach-panel-check" /> <label for="attach-panel-check">{L_ADD_ATTACHMENT}</label>
+<div id="attach-panel">
+	<dl class="kvlist">
+		<dt><label for="fileupload">{L_FILENAME}:</label></dt>
+		<dd>
+			<input type="file" name="fileupload" id="fileupload" maxlength="{FILESIZE}" value="" />
+			<input type="submit" name="add_file" value="{L_ADD_FILE}" onclick="upload = true;" />
+		</dd>
+		<dt><label for="filecomment">{L_FILE_COMMENT}:</label></dt>
+		<dd><textarea name="filecomment" id="filecomment" rows="3" cols="40">{FILE_COMMENT}</textarea></dd>
+	</dl>
+</div>
+</div>

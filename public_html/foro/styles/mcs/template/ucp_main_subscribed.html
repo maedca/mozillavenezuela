@@ -1,0 +1,94 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<h1>{L_TITLE}</h1>
+<p class="panel">{L_WATCHED_EXPLAIN}</p>
+
+<!-- IF .forumrow -->
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th>{L_WATCHED_FORUMS}</th>
+				<td class="lastpost">{L_LAST_POST}</td>
+				<td class="mark-col">{L_MARK} <input type="checkbox" id="f_all" onclick="marklist_all('ucp', 'f[', 'f_all');" title="{L_MARK_ALL}" /></td>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- BEGIN forumrow -->
+				<tr>
+					<th>
+						<img src="{forumrow.FORUM_FOLDER_IMG_SRC}" alt="" />
+						<a href="{forumrow.U_VIEWFORUM}" class="forumtitle">{forumrow.FORUM_NAME}</a>
+						<div class="desc">{forumrow.FORUM_DESC}</div>
+					</th>
+					<td class="lastpost"><!-- IF forumrow.LAST_POST_TIME -->{L_POST_BY_AUTHOR} {forumrow.LAST_POST_AUTHOR_FULL}
+						<a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <div>{forumrow.LAST_POST_TIME}</div>
+						<!-- ELSE -->{L_NO_POSTS}<!-- ENDIF -->
+					</td>
+					<td class="mark-col"><input type="checkbox" name="f[{forumrow.FORUM_ID}]" id="f{forumrow.FORUM_ID}" onclick="marklist_each('ucp', 'f[', 'f_all');" /></td>
+				</tr>
+			<!-- END forumrow -->
+		</tbody>
+	</table>
+<!-- ELSEIF S_FORUM_NOTIFY -->
+	<p class="no-entries">{L_NO_WATCHED_FORUMS}</p>
+<!-- ENDIF -->
+
+<!-- IF .topicrow -->
+	<div class="display-actions">
+		<!-- DEFINE $TOTAL = '{TOTAL_TOPICS}' -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th>{L_WATCHED_TOPICS}</th>
+				<td class="lastpost">{L_LAST_POST}</td>
+				<td class="mark-col">{L_MARK} <input type="checkbox" id="t_all" onclick="marklist_all('ucp', 't[', 't_all');" title="{L_MARK_ALL}" /></td>
+			</tr>
+		</thead>
+		<tbody>
+
+			<!-- BEGIN topicrow -->
+				<tr>
+					<th title="{topicrow.TOPIC_FOLDER_IMG_ALT}">
+						<img src="{topicrow.TOPIC_FOLDER_IMG_SRC}" alt="" />
+						<!-- IF topicrow.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}" alt="{topicrow.TOPIC_FOLDER_IMG_ALT}" /><!-- ENDIF -->
+						<!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+						<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+						<div class="desc">
+							<!-- IF topicrow.PAGINATION --><strong class="pagination">{topicrow.PAGINATION}</strong><!-- ENDIF -->
+							<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}
+						</div>
+					</th>
+					<td class="lastpost">{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}
+						<a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <div>{topicrow.LAST_POST_TIME}</div>
+					</td>
+					<td class="mark-col"><input type="checkbox" name="t[{topicrow.TOPIC_ID}]" id="t{topicrow.TOPIC_ID}" onclick="marklist_each('ucp', 't[', 't_all');" /></td>
+				</tr>
+			<!-- END topicrow -->
+		</tbody>
+	</table>
+<!-- ELSEIF S_TOPIC_NOTIFY -->
+	<p class="no-entries">{L_NO_WATCHED_TOPICS}</p>
+<!-- ENDIF -->
+
+<!-- IF .topicrow or .forumrow -->
+	<div class="display-actions">
+		<div class="buttons">
+			<input type="submit" name="unwatch" value="{L_UNWATCH_MARKED}" />
+			{S_FORM_TOKEN}
+		</div>
+		<!-- IF .topicrow -->
+			<!-- INCLUDE pagination.html -->
+		<!-- ENDIF -->
+		<div class="display-actions-end"></div>
+	</div>
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

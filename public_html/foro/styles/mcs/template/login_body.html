@@ -1,0 +1,37 @@
+<!-- INCLUDE overall_header.html -->
+
+<form action="{S_LOGIN_ACTION}" method="post" id="login">
+		<h1><!-- IF LOGIN_EXPLAIN -->{LOGIN_EXPLAIN}<!-- ELSE -->{L_LOGIN}<!-- ENDIF --></h1>
+		<!-- IF LOGIN_ERROR --><div class="error">{LOGIN_ERROR}</div><!-- ENDIF -->
+<div class="panel">
+		<dl class="kvlist login-list">
+			<dt><label for="{USERNAME_CREDENTIAL}">{L_USERNAME}:</label></dt>
+			<dd><input type="text" tabindex="1" name="{USERNAME_CREDENTIAL}" id="{USERNAME_CREDENTIAL}" size="25" value="{USERNAME}" /></dd>
+			<dt><label for="{PASSWORD_CREDENTIAL}">{L_PASSWORD}:</label></dt>
+			<dd><input type="password" tabindex="2" id="{PASSWORD_CREDENTIAL}" name="{PASSWORD_CREDENTIAL}" size="25" /></dd>
+		
+		<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+			<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->
+		</dl>
+		
+		<!-- IF S_DISPLAY_FULL_LOGIN -->
+			<!-- IF S_AUTOLOGIN_ENABLED --><div><label for="autologin"><input type="checkbox" name="autologin" id="autologin" tabindex="4" /> {L_LOG_ME_IN}</label></div><!-- ENDIF -->
+			<div><label for="viewonline"><input type="checkbox" name="viewonline" id="viewonline" tabindex="5" /> {L_HIDE_ME}</label></div>
+		<!-- ENDIF -->
+</div>
+
+		<div>{S_HIDDEN_FIELDS}<input type="submit" name="login" tabindex="6" value="{L_LOGIN}" /></div>
+
+		<!-- IF S_DISPLAY_FULL_LOGIN and (U_SEND_PASSWORD or U_RESEND_ACTIVATION or S_ADMIN_AUTH) -->
+			<div class="panel"><ul class="linklist">
+				<!-- IF U_SEND_PASSWORD --><li><a href="{U_SEND_PASSWORD}">{L_FORGOT_PASS}</a></li><!-- ENDIF -->
+				<!-- IF U_RESEND_ACTIVATION --><li><a href="{U_RESEND_ACTIVATION}">{L_RESEND_ACTIVATION}</a></li><!-- ENDIF -->
+<!-- IF not S_ADMIN_AUTH and S_REGISTER_ENABLED --><li><a href="{U_REGISTER}">{L_REGISTER}</a></li><!-- ENDIF -->
+			</ul></div>
+		<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

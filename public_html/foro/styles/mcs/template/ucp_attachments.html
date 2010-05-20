@@ -1,0 +1,64 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h1>{L_TITLE}</h1>
+<p class="panel">{L_ATTACHMENTS_EXPLAIN}</p>
+
+<!-- IF .attachrow -->
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+	<div class="display-actions">
+		<!-- DEFINE $TOTAL = '{TOTAL_ATTACHMENTS}' -->
+		<!-- DEFINE $FIX_UCP_ATTACHMENTS = 1 -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th><a href="{U_SORT_FILENAME}">{L_FILENAME}</a></th>
+				<td><a href="{U_SORT_DOWNLOADS}">{L_DOWNLOADS}</a></td>
+				<td><a href="{U_SORT_POST_TIME}">{L_POST_TIME}</a></td>
+				<td class="mark-col">{L_MARK} <input type="checkbox" id="attachment_all" value="1" onclick="marklist_all('ucp', 'attachment[', 'attachment_all');" title="{L_MARK_ALL}" /></td>
+			</tr>
+	</thead>
+	<tbody>
+
+		<!-- BEGIN attachrow -->
+			<tr>
+				<th>
+					<a href="{attachrow.U_VIEW_ATTACHMENT}">{attachrow.FILENAME}</a> ({attachrow.SIZE})
+					<div class="desc">
+						<!-- IF attachrow.S_IN_MESSAGE -->{L_PM}: <!-- ELSE -->{L_TOPIC}: <!-- ENDIF -->
+						<a href="{attachrow.U_VIEW_TOPIC}">{attachrow.TOPIC_TITLE}</a>
+					</div>
+				</th>
+				<td class="extra">{attachrow.DOWNLOAD_COUNT}</td>
+				<td class="time">{attachrow.POST_TIME}</td>
+				<td class="mark-col"><input type="checkbox" name="attachment[{attachrow.ATTACH_ID}]" value="1" onclick="marklist_each('ucp', 'attachment[', 'attachment_all');" /></td>
+			</tr>
+		<!-- END attachrow -->
+		</tbody>
+	</table>
+
+	<fieldset class="display-options">
+		<label for="sk">{L_SORT_BY}: <select name="sk" id="sk">{S_SORT_OPTIONS}</select></label> 
+		<label><select name="sd" id="sd">{S_ORDER_SELECT}</select></label>
+		<input type="submit" name="sort" value="{L_SORT}" />
+		{S_FORM_TOKEN}
+	</fieldset>
+
+	<div class="display-actions">
+		<div class="buttons">	
+			<input type="submit" name="delete" value="{L_DELETE_MARKED}" />
+			{S_FORM_TOKEN}
+		</div>
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+</form>
+<!-- ELSE -->
+	<p class="no-entries">{L_UCP_NO_ATTACHMENTS}</p>
+<!-- ENDIF -->
+
+<!-- INCLUDE ucp_footer.html -->

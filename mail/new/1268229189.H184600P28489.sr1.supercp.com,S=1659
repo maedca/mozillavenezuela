@@ -1,0 +1,46 @@
+Return-path: <>
+Envelope-to: mozillav@sr1.supercp.com
+Delivery-date: Wed, 10 Mar 2010 08:53:09 -0500
+Received: from mailnull by sr1.supercp.com with local (Exim 4.69)
+	id 1NpMLV-0007PR-4A
+	for mozillav@sr1.supercp.com; Wed, 10 Mar 2010 08:53:09 -0500
+X-Failed-Recipients: maedca@mozillavenezuela.org
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@sr1.supercp.com>
+To: mozillav@sr1.supercp.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1NpMLV-0007PR-4A@sr1.supercp.com>
+Date: Wed, 10 Mar 2010 08:53:09 -0500
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  maedca@mozillavenezuela.org
+    No Such User Here
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <mozillav@sr1.supercp.com>
+Received: from mozillav by sr1.supercp.com with local (Exim 4.69)
+	(envelope-from <mozillav@sr1.supercp.com>)
+	id 1NpMLU-0007PG-N4
+	for maedca@mozillavenezuela.org; Wed, 10 Mar 2010 08:53:09 -0500
+To: maedca@mozillavenezuela.org
+Subject: [Mozilla Venezuela] Registro de nuevo usuario
+Date: Wed, 10 Mar 2010 13:53:08 +0000
+From: WordPress <wordpress@mozillavenezuela.org>
+Message-ID: <d9c2630e05d8a3248a73abd54f9bd8b5@mozillavenezuela.org>
+X-Priority: 3
+X-Mailer: PHPMailer (phpmailer.sourceforge.net) [version 2.0.4]
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+
+Registrado un nuevo usuario en tu blog Mozilla Venezuela:
+
+Nombre de usuario: kenyer
+
+E-mail: kdoming@usb.ve
+

@@ -1,0 +1,55 @@
+
+<!-- BEGIN forumrow -->
+	<!-- IF (forumrow.S_IS_CAT and not forumrow.S_FIRST_ROW) or forumrow.S_NO_CAT  -->
+			</tbody></table>
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT  -->
+			<table class="normal-table forumlist">
+				<thead>
+					<tr>
+						<th class="forumname"><!-- IF forumrow.S_IS_CAT --><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a><!-- ELSE -->{L_FORUM}<!-- ENDIF --></th>
+						<td class="forum-state"></td>
+						<td class="topics">{L_TOPICS}</td>
+						<td class="posts">{L_POSTS}</td>
+						<td class="lastpost">{L_LAST_POST}</td>
+					</tr>
+				</thead>
+				<tbody>
+	<!-- ENDIF -->
+
+	<!-- IF not forumrow.S_IS_CAT -->
+				<tr>
+					<th class="forumname" title="{forumrow.FORUM_FOLDER_IMG_ALT}">
+						<!-- IF forumrow.FORUM_IMAGE --><img class="row-image" src="{forumrow.FORUM_IMAGE_SRC}" alt="" /><!-- ENDIF -->
+						<div class="row-text">
+							<a href="{forumrow.U_VIEWFORUM}" class="forumtitle">{forumrow.FORUM_NAME}</a>
+							<div class="desc">{forumrow.FORUM_DESC}</div>
+							<!-- IF forumrow.SUBFORUMS and forumrow.S_LIST_SUBFORUMS --><div class="desc">{forumrow.L_SUBFORUM_STR} {forumrow.SUBFORUMS}</div><!-- ENDIF -->
+						</div>
+					</th>
+					<!-- IF forumrow.CLICKS -->
+						<td class="redirect" colspan="3">{L_REDIRECTS}: {forumrow.CLICKS}</td>
+					<!-- ELSEIF not forumrow.S_IS_LINK -->
+						<td class="forum-state">
+							<!-- IF forumrow.U_UNAPPROVED_TOPICS --><div><a href="{forumrow.U_UNAPPROVED_TOPICS}">{UNAPPROVED_IMG}</a></div><!-- ENDIF -->
+							<!-- IF forumrow.S_LOCKED_FORUM -->{L_FORUM_LOCKED}<!-- ELSEIF forumrow.S_UNREAD_FORUM -->{L_NEW_POSTS}<!-- ENDIF -->
+						</td>
+						<td class="topics">{forumrow.TOPICS}</td>
+						<td class="posts">{forumrow.POSTS}</td>
+						<td class="lastpost">
+							<!-- IF forumrow.LAST_POST_TIME --><!-- IF not S_IS_BOT --><a href="{forumrow.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF -->{L_POST_BY_AUTHOR} {forumrow.LAST_POSTER_FULL}<div>{forumrow.LAST_POST_TIME}</div><!-- ELSE -->{L_NO_POSTS}<!-- ENDIF -->
+						</td>
+					<!-- ELSE --><td class="redirect" colspan="3"></td><!-- ENDIF -->
+				</tr>
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_LAST_ROW -->
+			</tbody></table>
+	<!-- ENDIF -->
+
+<!-- BEGINELSE -->
+	<!-- IF not S_VIEWFORUM -->
+		<p class="no-entries">{L_NO_FORUMS}</p>
+	<!-- ENDIF -->
+<!-- END forumrow -->

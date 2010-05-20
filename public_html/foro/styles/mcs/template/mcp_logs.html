@@ -1,0 +1,64 @@
+<!-- INCLUDE mcp_header.html -->
+
+<h1>{L_TITLE}</h1>
+
+<!-- IF S_LOGS and .log -->
+<form method="post" id="mcp" action="{U_POST_ACTION}">
+
+	<div class="display-actions">
+		<div class="other">
+			{L_SEARCH_KEYWORDS}: <input type="text" name="keywords" value="{S_KEYWORDS}" /> <input type="submit" name="filter" value="{L_SEARCH}" />
+		</div>
+		<!-- DEFINE $TOTAL = '{TOTAL}' -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th>{L_ACTION}</th>
+				<td>{L_USERNAME}</td>
+				<td>{L_IP}</td>
+				<td>{L_TIME}</td>
+				<td>{L_ACTIONS}</td>
+				<!-- IF S_CLEAR_ALLOWED --><td class="mark-col">{L_MARK} <input type="checkbox" id="mark_all" onclick="marklist_each('mcp', 'mark[', 'mark_all');" /></td><!-- ENDIF -->
+			</tr>
+		</thead>
+		<tbody>
+			<!-- BEGIN log -->
+				<tr>
+					<th>{log.ACTION}</th>
+					<td>{log.USERNAME}</td>
+					<td style="text-align: center">{log.IP}</td>
+					<td style="text-align: center">{log.DATE}</td>
+					<td>{log.DATA}</td>
+					<!-- IF S_CLEAR_ALLOWED --><td class="mark-col"><input type="checkbox" name="mark[]" value="{log.ID}" onclick="marklist_each('mcp', 'mark[', 'mark_all');" /></td><!-- ENDIF -->
+				</tr>
+			<!-- END log -->
+		</tbody>
+	</table>
+
+	<fieldset class="display-options">
+		<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label>
+		<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+		<label>{S_SELECT_SORT_DIR}</label>
+		<input type="submit" name="sort" value="{L_GO}" />
+	</fieldset>
+
+	<div class="display-actions">{S_FORM_TOKEN}
+		<!-- IF S_CLEAR_ALLOWED -->
+			<div class="buttons">
+				<input type="submit" name="action[del_all]" value="{L_DELETE_ALL}" />
+				<input type="submit" value="{L_DELETE_MARKED}" name="action[del_marked]" />
+			</div>
+		<!-- ENDIF -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+</form>
+<!-- ELSE -->
+	<p class="no-entries">{L_NO_ENTRIES}</p>
+<!-- ENDIF -->
+
+<!-- INCLUDE mcp_footer.html -->

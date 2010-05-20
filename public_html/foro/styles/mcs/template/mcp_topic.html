@@ -1,0 +1,154 @@
+<!-- INCLUDE mcp_header.html -->
+
+<h1><a href="{U_VIEW_TOPIC}">{L_TOPIC}: {TOPIC_TITLE}</a></h1>
+
+<script type="text/javascript">
+// <![CDATA[
+var panels = new Array('display-panel', 'split-panel', 'merge-panel');
+
+<!-- IF S_MERGE_VIEW -->
+	var show_panel = 'merge-panel';
+<!-- ELSEIF S_SPLIT_VIEW -->
+	var show_panel = 'split-panel';
+<!-- ELSE -->
+	var show_panel = 'display-panel';
+<!-- ENDIF -->
+
+window.onload = subPanels;
+
+// ]]>
+</script>
+
+	<ul id="minitabs" class="tabs">
+		<li id="display-panel-tab"<!-- IF not S_MERGE_VIEW --> class="activetab"<!-- ENDIF -->>
+			<a href="#minitabs" onclick="subPanels('display-panel'); return false;">{L_DISPLAY_OPTIONS}</a>
+		</li>
+		<li id="split-panel-tab">
+			<a href="#minitabs" onclick="subPanels('split-panel'); return false;">{L_SPLIT_TOPIC}</a>
+		</li>
+		<li id="merge-panel-tab"<!-- IF S_MERGE_VIEW --> class="activetab"<!-- ENDIF -->>
+			<a href="#minitabs" onclick="subPanels('merge-panel'); return false;">{L_MERGE_TOPIC}</a>
+		</li>
+	</ul>
+
+<form id="mcp" method="post" action="{S_MCP_ACTION}">
+
+<div class="tabcontent mcp-topic-tabs">
+
+	<div id="display-panel" class="panel">
+	<dl class="kvlist mcp-topic">
+		<dt><label for="posts_per_page">{L_POSTS_PER_PAGE}:</label></dt>
+		<dd><input type="text" name="posts_per_page" id="posts_per_page" size="6" value="{POSTS_PER_PAGE}" />
+		<div class="explain">{L_POSTS_PER_PAGE_EXPLAIN}</div></dd>
+		<dt><label>{L_DISPLAY_POSTS}:</label></dt>
+		<dd>{S_SELECT_SORT_DAYS} <label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label><label>{S_SELECT_SORT_DIR}</label> <input type="submit" name="sort" value="{L_GO}" /></dd>
+	</dl>
+	</div>
+
+<!-- IF S_CAN_SPLIT -->
+	<div id="split-panel" class="panel">
+		<p>{L_SPLIT_TOPIC_EXPLAIN}</p>
+
+		<dl class="kvlist mcp-topic">
+	<!-- IF S_SHOW_TOPIC_ICONS -->
+			<dt><label for="icon">{L_TOPIC_ICON}:</label></dt>
+			<dd><label for="icon"><input type="radio" name="icon" id="icon" value="0" checked="checked" /> {L_NO_TOPIC_ICON}</label>
+			<!-- BEGIN topic_icon --><label for="icon-{topic_icon.ICON_ID}"><input type="radio" name="icon" id="icon-{topic_icon.ICON_ID}" value="{topic_icon.ICON_ID}" {topic_icon.S_ICON_CHECKED} /><img src="{topic_icon.ICON_IMG}" width="{topic_icon.ICON_WIDTH}" height="{topic_icon.ICON_HEIGHT}" alt="" title="" /></label> <!-- END topic_icon --></dd>
+	<!-- ENDIF -->
+
+		<dt><label for="subject">{L_SPLIT_SUBJECT}:</label></dt>
+		<dd><input type="text" name="subject" id="subject" size="45" maxlength="64" tabindex="2" value="{SPLIT_SUBJECT}" title="{L_SPLIT_SUBJECT}" /></dd>
+		<dt><label>{L_SPLIT_FORUM}:</label></dt>
+		<dd><select name="to_forum_id">{S_FORUM_SELECT}</select></dd>
+	</dl>
+	</div>
+<!-- ENDIF -->
+
+<!-- IF S_CAN_MERGE -->
+	<div id="merge-panel" class="panel">
+		<p>{L_MERGE_TOPIC_EXPLAIN}</p>
+	<dl class="kvlist mcp-topic">
+		<dt><label for="to_topic_id">{L_MERGE_TOPIC_ID}:</label></dt>
+		<dd>
+			<input type="text" size="6" name="to_topic_id" id="to_topic_id" value="{TO_TOPIC_ID}" />
+			<a href="{U_SELECT_TOPIC}" >{L_SELECT_TOPIC}</a>
+		</dd>
+		<!-- IF TO_TOPIC_INFO --><dd>{TO_TOPIC_INFO}</dd><!-- ENDIF -->
+	</dl>
+	</div>
+<!-- ENDIF -->
+
+</div>
+
+	<h2 id="review">{L_TOPIC_REVIEW}: {TOPIC_TITLE}</h2>
+
+	<div class="display-actions">
+		<div class="other">
+			<a href="#review" onclick="viewableArea(getElementById('topicreview'), true); var rev_text = getElementById('review').getElementsByTagName('a').item(0).firstChild; if (rev_text.data == '{LA_EXPAND_VIEW}'){rev_text.data = '{LA_COLLAPSE_VIEW}'; } else if (rev_text.data == '{LA_COLLAPSE_VIEW}'){rev_text.data = '{LA_EXPAND_VIEW}'};">{L_EXPAND_VIEW}</a>
+			&bull; <input type="checkbox" id="post_id_list_all" onclick="marklist_all('mcp', 'post_id_list[', 'post_id_list_all');" checked="checked" /> <label for="post_id_list_all">{L_MARK_ALL}</label>
+		</div>
+		<!-- DEFINE $TOTAL = '{TOTAL_POSTS}' -->
+		<!-- INCLUDE pagination.html -->
+		<div class="display-actions-end"></div>
+	</div>
+
+	<div id="topicreview">
+		<!-- BEGIN postrow -->
+		<div class="post">
+
+			<div class="postbody" id="pr{postrow.POST_ID}">
+				<ul class="linklist actionlist">
+					<li><a href="{postrow.U_POST_DETAILS}" title="{L_POST_DETAILS}">{L_POST_DETAILS}</a></li>
+					<li>{L_SELECT}: <input type="checkbox" name="post_id_list[]" value="{postrow.POST_ID}"<!-- IF postrow.S_CHECKED --> checked="checked"<!-- ENDIF --> onclick="marklist_each('mcp', 'post_id_list[', 'post_id_list_all');" /></li>
+				</ul>
+
+				<h2><a href="{postrow.U_POST_DETAILS}">{postrow.POST_SUBJECT}</a></h2>
+				<p class="author"><a href="#pr{postrow.POST_ID}">{postrow.MINI_POST_IMG}</a> {L_POSTED} {postrow.POST_DATE} {L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong><!-- IF postrow.U_MCP_DETAILS --> [ <a href="{postrow.U_MCP_DETAILS}">{L_POST_DETAILS}</a> ]<!-- ENDIF --></p>
+
+				<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED -->
+				<p class="rules">
+					<!-- IF postrow.S_POST_UNAPPROVED --><div>{UNAPPROVED_IMG} <a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_UNAPPROVED}</strong></a></div><!-- ENDIF -->
+					<!-- IF postrow.S_POST_REPORTED --><div>{REPORTED_IMG} <a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a></div><!-- ENDIF -->
+				</p>
+				<!-- ENDIF -->
+
+				<div class="content" id="message_{postrow.POST_ID}">{postrow.MESSAGE}</div>
+
+				<!-- IF postrow.S_HAS_ATTACHMENTS -->
+					<dl class="attachbox">
+						<dt>{L_ATTACHMENTS}</dt>
+						<!-- BEGIN attachment -->
+							<dd>{postrow.attachment.DISPLAY_ATTACHMENT}</dd>
+						<!-- END attachment -->
+					</dl>
+				<!-- ENDIF -->
+
+			</div>
+
+		</div>
+		<!-- IF not postrow.S_LAST_ROW --><hr /><!-- ENDIF -->
+		<!-- END postrow -->
+	</div>
+	<script type="text/javascript">marklist_each('mcp', 'post_id_list[', 'post_id_list_all');</script>
+
+
+<div class="display-actions">
+	<div class="action-select">
+		<select name="action">
+			<option value="" selected="selected">{L_SELECT_ACTION}</option>
+			<!-- IF S_CAN_APPROVE --><option value="approve">{L_APPROVE_POSTS}</option><!-- ENDIF -->
+			<!-- IF S_CAN_LOCK --><option value="lock_post">{L_LOCK_POST_POSTS} [ {L_LOCK_POST_EXPLAIN} ]</option><option value="unlock_post">{L_UNLOCK_POST_POSTS}</option><!-- ENDIF -->
+			<!-- IF S_CAN_DELETE --><option value="delete_post">{L_DELETE_POSTS}</option><!-- ENDIF -->
+			<!-- IF S_CAN_MERGE --><option value="merge_posts"<!-- IF S_MERGE_VIEW --> selected="selected"<!-- ENDIF -->>{L_MERGE_POSTS}</option><!-- ENDIF -->
+			<!-- IF S_CAN_SPLIT --><option value="split_all"<!-- IF S_SPLIT_VIEW --> selected="selected"<!-- ENDIF -->>{L_SPLIT_POSTS}</option><option value="split_beyond">{L_SPLIT_AFTER}</option><!-- ENDIF -->
+		</select>
+		<input type="submit" name="mcp_topic_submit" value="{L_SUBMIT}" />{S_HIDDEN_FIELDS}{S_FORM_TOKEN}
+	</div>
+
+	<!-- INCLUDE pagination.html -->
+	<div class="display-actions-end"></div>
+</div>
+
+</form>
+
+<!-- INCLUDE mcp_footer.html -->

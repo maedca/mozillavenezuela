@@ -1,0 +1,16 @@
+<!-- INCLUDE overall_header.html -->
+
+
+<form action="{S_PROFILE_ACTION}" method="post" id="resend">
+
+		<h1>{L_UCP_RESEND}</h1>
+		<dl class="kvlist login-list panel">
+			<dt><label for="username">{L_USERNAME}:</label></dt>
+			<dd><input type="text" name="username" id="username" size="25" /></dd>
+			<dt><label for="email">{L_EMAIL_ADDRESS}:</label></dt>
+			<dd><input type="text" name="email" id="email" size="25" maxlength="100" /><div class="explain">{L_EMAIL_REMIND}</div></dd>
+		</dl>
+		<div><input type="submit" name="submit" id="submit" value="{L_SUBMIT}" tabindex="2" />{S_HIDDEN_FIELDS}{S_FORM_TOKEN}</div>
+</form>
+
+<!-- INCLUDE overall_footer.html -->

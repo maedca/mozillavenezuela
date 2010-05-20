@@ -1,0 +1,51 @@
+<!-- INCLUDE ucp_header.html -->
+
+<form id="ucp" method="post" action="{S_UCP_ACTION}"{S_FORM_ENCTYPE}>
+
+<h1>{L_TITLE}</h1>
+
+<div class="panel">
+	<p>{L_PROFILE_INFO_NOTICE}</p>
+
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+	<dl class="kvlist ucp-profile">
+		<dt><label for="icq">{L_UCP_ICQ}:</label></dt>
+		<dd><input type="text" name="icq" id="icq" maxlength="15" value="{ICQ}" /></dd>
+		<dt><label for="aim">{L_UCP_AIM}:</label></dt>
+		<dd><input type="text" name="aim" id="aim" maxlength="255" value="{AIM}" /></dd>
+		<dt><label for="msn">{L_UCP_MSNM}:</label></dt>
+		<dd><input type="text" name="msn" id="msn" maxlength="255" value="{MSN}" /></dd>
+		<dt><label for="yim">{L_UCP_YIM}:</label></dt>
+		<dd><input type="text" name="yim" id="yim" maxlength="255" value="{YIM}" /></dd>
+		<dt><label for="jabber">{L_UCP_JABBER}:</label></dt>
+		<dd><input type="text" name="jabber" id="jabber" maxlength="255" value="{JABBER}" /></dd>
+		<dt><label for="website">{L_WEBSITE}:</label></dt>
+		<dd><input type="text" name="website" id="website" maxlength="255" value="{WEBSITE}" /></dd>
+		<dt><label for="location">{L_LOCATION}:</label></dt>
+		<dd><input type="text" name="location" id="location" maxlength="255" value="{LOCATION}" /></dd>
+		<dt><label for="occupation">{L_OCCUPATION}:</label></dt>
+		<dd><textarea name="occupation" id="occupation" rows="3" cols="30">{OCCUPATION}</textarea></dd>
+		<dt><label for="interests">{L_INTERESTS}:</label></dt>
+		<dd><textarea name="interests" id="interests" rows="3" cols="30">{INTERESTS}</textarea></dd>
+		<!-- IF S_BIRTHDAYS_ENABLED -->
+			<dt><label for="bday_day">{L_BIRTHDAY}:</label></dt>
+			<dd>
+				<label for="bday_day">{L_DAY}: <select name="bday_day" id="bday_day" style="width: 4em;">{S_BIRTHDAY_DAY_OPTIONS}</select></label> 
+				<label for="bday_month">{L_MONTH}: <select name="bday_month" id="bday_month" style="width: 4em;">{S_BIRTHDAY_MONTH_OPTIONS}</select></label> 
+				<label for="bday_year">{L_YEAR}: <select name="bday_year" id="bday_year" style="width: 6em;">{S_BIRTHDAY_YEAR_OPTIONS}</select></label>
+				<div class="explain">{L_BIRTHDAY_EXPLAIN}</div>
+			</dd>
+		<!-- ENDIF -->
+		<!-- BEGIN profile_fields -->
+			<dt><label<!-- IF profile_fields.FIELD_ID --> for="{profile_fields.FIELD_ID}"<!-- ENDIF -->>{profile_fields.LANG_NAME}:<!-- IF profile_fields.S_REQUIRED --> *<!-- ENDIF --></label></dt>
+			<!-- IF profile_fields.ERROR --><dd class="error">{profile_fields.ERROR}</dd><!-- ENDIF -->
+			<dd>{profile_fields.FIELD}<!-- IF profile_fields.LANG_EXPLAIN --><div class="explain">{profile_fields.LANG_EXPLAIN}</div><!-- ENDIF --></dd>
+		<!-- END profile_fields -->
+	</dl>
+
+</div>
+
+<div><input type="submit" name="submit" value="{L_SUBMIT}" />{S_HIDDEN_FIELDS}{S_FORM_TOKEN}</div>
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

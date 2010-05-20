@@ -1,0 +1,25 @@
+head	1.1;
+access;
+symbols;
+locks
+	mozillav:1.1; strict;
+comment	@# @;
+
+
+1.1
+date	2010.03.28.22.48.43;	author mozillav;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@"Modified by /usr/local/cpanel/cpanel "
+@
+text
+@maedca:262144000
+@

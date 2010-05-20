@@ -1,0 +1,54 @@
+Return-path: <>
+Envelope-to: mozillav@sr1.supercp.com
+Delivery-date: Sun, 07 Mar 2010 19:55:39 -0500
+Received: from mailnull by sr1.supercp.com with local (Exim 4.69)
+	id 1NoRFz-0004bM-QK
+	for mozillav@sr1.supercp.com; Sun, 07 Mar 2010 19:55:39 -0500
+X-Failed-Recipients: maedca@mozillavenezuela.org
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@sr1.supercp.com>
+To: mozillav@sr1.supercp.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1NoRFz-0004bM-QK@sr1.supercp.com>
+Date: Sun, 07 Mar 2010 19:55:39 -0500
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  maedca@mozillavenezuela.org
+    No Such User Here
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <mozillav@sr1.supercp.com>
+Received: from mozillav by sr1.supercp.com with local (Exim 4.69)
+	(envelope-from <mozillav@sr1.supercp.com>)
+	id 1NoRFz-0004bG-PJ
+	for maedca@mozillavenezuela.org; Sun, 07 Mar 2010 19:55:39 -0500
+To: maedca@mozillavenezuela.org
+Subject: Nuevo sitio de WordPress
+Date: Mon, 8 Mar 2010 00:55:39 +0000
+From: WordPress <wordpress@mozillavenezuela.org>
+Message-ID: <6918bf5483b00b1e90b319535eddd458@mozillavenezuela.org>
+X-Priority: 3
+X-Mailer: PHPMailer (phpmailer.sourceforge.net) [version 2.0.4]
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+
+Tu nuevo sitio creado con WordPress se ha instalado correctamente en:
+
+http://mozillavenezuela.org
+
+Puedes iniciar sesión con la siguiente información:
+
+Usuario: admin
+Contraseña: 6&@M1ncY0Ye6
+
+Esperamos que disfrutes con tu nuevo sitio. ¡Gracias!
+
+--El equipo de WordPress
+http://es.wordpress.org/
+

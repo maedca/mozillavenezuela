@@ -1,0 +1,244 @@
+.widget ul {
+  padding-left: 15px;
+  list-style-type: square;
+  color: #185f9b;
+}
+
+.widget_archive ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.widget_archive ul a {
+  text-decoration: none;
+}
+
+.widget_archive ul li {
+  border-top: 1px solid #eae7de;
+}
+
+.widget_categories {
+  background-color: #f4f1ee;
+}
+
+.widget_categories ul {
+}
+
+.widget_categories ul li {
+  border-top: 0;
+}
+
+.widget_categories h3 {
+  border-bottom: 1px solid white;
+}
+
+.widget_calendar table {
+  width: 100%;
+}
+
+#content .navigation {
+  font-size: 0.9em;
+  overflow: hidden; /* clear the floats */
+}
+
+#content .post {
+  margin-top: 10px;
+}
+
+#content .article {
+  margin-bottom: 30px;
+}
+
+#content .article .meta {
+  background: transparent url(img/hr_trans.png) no-repeat scroll center top;
+  padding-top: 4px;
+}
+
+#content h1.long {
+  font-size: 28px;
+  margin-bottom: 0;
+}
+
+#content .article img {
+  padding: 3px;
+  margin: 5px;
+  border:1px solid #dfecf1;
+  color:#25221d;
+}
+
+#content .article img.wp-smiley {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+
+#content .navigation,
+#content .navigation a {
+  color: #9e988e;
+}
+
+#content ul.taxonomy.box {
+  list-style-type: none;
+}
+
+#content ul.taxonomy.box li {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+#content ul.taxonomy.box li:before {
+  content: " | ";
+}
+
+#content ul.taxonomy.box li:first-child:before {
+  content: "";
+}
+
+#content .taxonomy.box {
+  text-align: right;
+  margin: 0px 0px 20px 0px;
+  padding: 5px;
+}
+
+#content .comment-meta, 
+#content .meta, 
+#content .reply {
+  color: #777;
+  margin: 0;
+}
+
+#content .comment-meta a, 
+#content .meta a,
+#content .reply a {
+  text-decoration: none;
+  color: #777;
+  border-bottom: 1px solid #ccc;
+}
+
+#content .h4.meta {
+  text-align: right;
+}
+
+.commentlist {
+  margin: 0;
+}
+
+.commentlist,
+.commentlist .children {
+  list-style-type: none;
+  padding: 0;
+}
+
+.commentlist .children {
+  margin-left: 30px;
+}
+
+.commentlist .children li {
+  margin-top: 10px;
+  background: transparent url(img/hr_trans.png) no-repeat scroll center top;
+  padding-right: 0;
+}
+
+.commentlist li {
+  padding: 10px;
+}
+
+.commentlist > li {
+  background: transparent url(img/hr_trans.png) no-repeat scroll center top;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.commentlist > li:hover {
+  border: 1px solid #ddd;
+}
+
+.commentlist .reply {
+  float: left;
+  display: none;
+  padding: 3px 0;
+}
+
+.commentlist .comment:hover .reply {
+  display: block;
+}
+
+.commentlist .vcard img.avatar {
+  float: right;
+}
+
+.commentlist .comment-author.vcard {
+  font-size: 1.5em;
+  line-height: 1em;
+  padding: 5px 0;
+  display: block;
+}
+
+.commentlist li p {
+  padding: 0;
+}
+
+.commentlist .comment-author.vcard a {
+  text-decoration: none;
+}
+
+.commentlist .comment-author.vcard a:hover {
+  text-decoration: underline;
+}
+
+.respond #comment {
+  width: 100%;
+}
+
+.respond {
+  margin-top: 20px;
+}
+
+.respond p.notice {
+  margin: 10px;
+  font-size: 0.8em;
+}
+
+.respond form p {
+  padding: 0;
+}
+
+.respond .h3 {
+  color: #534e49;
+}
+
+.respond .logininfo {
+  font-size: 0.7em;
+  float: right;
+}
+
+.respond .cancel-comment-reply {
+  font-size: 0.8em;
+}
+
+.commentlist .respond {
+  margin: 10px;
+}
+
+.respond ul.loginform {
+  list-style-type: none;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.respond .loginform li {
+  display: inline-block;
+  width: 10em;
+  padding: 0;
+  margin: 0 0 5px 0;
+}
+
+.respond .loginform input {
+  width: 12em;
+  font-size: 0.8em;
+  border: 1px solid #cccccc;
+}

@@ -1,0 +1,56 @@
+Return-path: <>
+Envelope-to: mozillav@sr1.supercp.com
+Delivery-date: Wed, 10 Mar 2010 21:27:46 -0500
+Received: from mailnull by sr1.supercp.com with local (Exim 4.69)
+	id 1NpY7m-0003dP-5C
+	for mozillav@sr1.supercp.com; Wed, 10 Mar 2010 21:27:46 -0500
+X-Failed-Recipients: jonathanorlando@mozillacolombia.org
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@sr1.supercp.com>
+To: mozillav@sr1.supercp.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1NpY7m-0003dP-5C@sr1.supercp.com>
+Date: Wed, 10 Mar 2010 21:27:46 -0500
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  jonathanorlando@mozillacolombia.org
+    No Such User Here
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <mozillav@sr1.supercp.com>
+Received: from mozillav by sr1.supercp.com with local (Exim 4.69)
+	(envelope-from <mozillav@sr1.supercp.com>)
+	id 1NpY7l-0003dK-Vo
+	for jonathanorlando@mozillacolombia.org; Wed, 10 Mar 2010 21:27:46 -0500
+To: =?UTF-8?B?am9uYXRoYW5vcmxhbmRv?= <jonathanorlando@mozillacolombia.org>
+Subject: =?UTF-8?B?VGVtYSBhcHJvYmFkbyAtICJMb2NhbGl6YWNpb24gZGUgRmlyZWZveCI=?=
+From: <maedca@mozillavenezuela.org>
+Reply-To: <maedca@mozillavenezuela.org>
+MIME-Version: 1.0
+Message-ID: <eae10582a315471959e4d85ed05155d3@foro.mozillavenezuela.org>
+Date: Wed, 10 Mar 2010 21:27:41 -0500
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: phpBB3
+X-MimeOLE: phpBB3
+X-phpBB-Origin: phpbb://foro.mozillavenezuela.org
+
+Hola jonathanorlando,
+
+Está recibiendo esta notificación porque su tema "Localizacion de Firefox"
+en "Foros" 
+fue aprobado por un(a) moderador(a) o por La Administración. 
+
+Si quiere ver el tema, visite el siguiente enlace:
+http://foro.mozillavenezuela.org/viewtopic.php?f=6&t=2&e=0
+
+
+-- 
+Gracias, La Administración

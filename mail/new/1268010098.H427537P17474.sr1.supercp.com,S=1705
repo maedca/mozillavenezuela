@@ -1,0 +1,44 @@
+Return-path: <>
+Envelope-to: mozillav@sr1.supercp.com
+Delivery-date: Sun, 07 Mar 2010 20:01:38 -0500
+Received: from mailnull by sr1.supercp.com with local (Exim 4.69)
+	id 1NoRLm-0004Xn-DI
+	for mozillav@sr1.supercp.com; Sun, 07 Mar 2010 20:01:38 -0500
+X-Failed-Recipients: jonathanorlando@mozillacolombia.org
+Auto-Submitted: auto-replied
+From: Mail Delivery System <Mailer-Daemon@sr1.supercp.com>
+To: mozillav@sr1.supercp.com
+Subject: Mail delivery failed: returning message to sender
+Message-Id: <E1NoRLm-0004Xn-DI@sr1.supercp.com>
+Date: Sun, 07 Mar 2010 20:01:38 -0500
+
+This message was created automatically by mail delivery software.
+
+A message that you sent could not be delivered to one or more of its
+recipients. This is a permanent error. The following address(es) failed:
+
+  jonathanorlando@mozillacolombia.org
+    No Such User Here
+
+------ This is a copy of the message, including all the headers. ------
+
+Return-path: <mozillav@sr1.supercp.com>
+Received: from mozillav by sr1.supercp.com with local (Exim 4.69)
+	(envelope-from <mozillav@sr1.supercp.com>)
+	id 1NoRLm-0004Xf-C6
+	for jonathanorlando@mozillacolombia.org; Sun, 07 Mar 2010 20:01:38 -0500
+To: jonathanorlando@mozillacolombia.org
+Subject: =?UTF-8?Q?[Mozilla_Venezuela]_Tu_nombre_de_usuario_y_contrase=C3=B1a?=
+Date: Mon, 8 Mar 2010 01:01:38 +0000
+From: WordPress <wordpress@mozillavenezuela.org>
+Message-ID: <4168220e6140f0db990ab898ea54a24a@mozillavenezuela.org>
+X-Priority: 3
+X-Mailer: PHPMailer (phpmailer.sourceforge.net) [version 2.0.4]
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+
+Nombre de usuario: jonathanorlando
+Contraseña: swordfish
+http://mozillavenezuela.org/wp-login.php
+

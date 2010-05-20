@@ -1,0 +1,19 @@
+<!-- INCLUDE simple_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+/**
+* Jump to inbox
+*/
+function jump_to_inbox(url)
+{
+	opener.document.location.href = url.replace(/&amp;/g, '&');
+	window.close();
+}
+// ]]>
+</script>
+
+		<!-- IF S_NOT_LOGGED_IN --><p class="panel">{L_LOGIN_CHECK_PM}</p><!-- ELSE --><p class="panel">{MESSAGE}</p><p class="panel">{CLICK_TO_VIEW}</p><!-- ENDIF -->
+		<p ><a href="#" onclick="window.close(); return false;">{L_CLOSE_WINDOW}</a></p>
+
+<!-- INCLUDE simple_footer.html -->

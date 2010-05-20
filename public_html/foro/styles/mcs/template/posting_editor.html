@@ -1,0 +1,156 @@
+	<!-- IF S_EDIT_DRAFT --><strong><a href="{S_UCP_ACTION}">{L_BACK_TO_DRAFTS}</a></strong><!-- ENDIF -->
+	<!--<!-- IF S_DISPLAY_REVIEW --><strong><a href="#review">{L_TOPIC_REVIEW}</a></strong><!-- ENDIF -->-->
+
+	<!-- IF ERROR --><p class="error">{ERROR}</p><!-- ENDIF -->
+
+	<!-- IF S_PRIVMSGS and not S_SHOW_DRAFTS -->
+
+		<!-- IF S_ALLOW_MASS_PM -->
+			<!-- IF not S_EDIT_POST -->
+			<div>
+				<textarea id="username_list" name="username_list" cols="50" rows="2"></textarea>
+				<div><input type="submit" name="add_to" value="{L_ADD}" /></div>
+				<div><input type="submit" name="add_bcc" value="{L_ADD_BCC}" /></div>
+				<div><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></div>
+			</div>
+			<!-- ENDIF -->
+			<!-- IF .to_recipient -->
+				<dl class="kvlist postinglist">
+					<dt><label>{L_TO}:</label></dt>
+					<dd>
+						<!-- BEGIN to_recipient -->
+							<!-- IF not to_recipient.S_FIRST_ROW and to_recipient.S_ROW_COUNT mod 2 eq 0 --></dd><dd><!-- ENDIF -->
+							<!-- IF to_recipient.IS_GROUP --><a href="{to_recipient.U_VIEW}"><strong>{to_recipient.NAME}</strong></a> <!-- ELSE -->{to_recipient.NAME_FULL} <!-- ENDIF -->
+							<!-- IF not S_EDIT_POST --><input type="submit" name="remove_{to_recipient.TYPE}[{to_recipient.UG_ID}]" value="x" /><!-- ENDIF -->
+						<!-- END to_recipient -->
+					</dd>
+				</dl>
+			<!-- ENDIF -->
+			<!-- IF .bcc_recipient -->
+				<dl>
+					<dt><label>{L_BCC}:</label></dt>
+					<dd>
+						<!-- BEGIN bcc_recipient -->
+							<!-- IF not bcc_recipient.S_FIRST_ROW and bcc_recipient.S_ROW_COUNT mod 2 eq 0 --></dd><dd><!-- ENDIF -->
+							<!-- IF bcc_recipient.IS_GROUP --><a href="{bcc_recipient.U_VIEW}"><strong>{bcc_recipient.NAME}</strong></a><!-- ELSE -->{bcc_recipient.NAME_FULL} <!-- ENDIF -->
+							<!-- IF not S_EDIT_POST --><input type="submit" name="remove_{bcc_recipient.TYPE}[{bcc_recipient.UG_ID}]" value="x" /><!-- ENDIF -->
+						<!-- END bcc_recipient -->
+					</dd>
+				</dl>
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			<dl class="kvlist postinglist">
+				<dt><label for="username_list">{L_TO}:</label></dt>
+				<!-- IF .to_recipient -->
+					<dd>
+						<!-- BEGIN to_recipient -->
+							<!-- IF not to_recipient.S_FIRST_ROW and to_recipient.S_ROW_COUNT mod 2 eq 0 --></dd><dd><!-- ENDIF -->
+							<!-- IF to_recipient.IS_GROUP --><a href="{to_recipient.U_VIEW}"><strong>{to_recipient.NAME}</strong></a><!-- ELSE -->{to_recipient.NAME_FULL} <!-- ENDIF -->
+							<!-- IF not S_EDIT_POST --><input type="submit" name="remove_{to_recipient.TYPE}[{to_recipient.UG_ID}]" value="x" /><!-- ENDIF -->
+						<!-- END to_recipient -->
+					</dd>
+				<!-- ENDIF -->
+
+				<!-- IF not S_EDIT_POST -->
+				<dd>
+					<input type="text" name="username_list" id="username_list" size="20" value="" />
+					<input type="submit" name="add_to" value="{L_ADD}" />
+					<div class="explain"><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false">{L_FIND_USERNAME}</a></div>
+				</dd>
+				<!-- ENDIF -->
+			</dl>
+		<!-- ENDIF -->
+
+		<!-- IF S_GROUP_OPTIONS -->
+			<dl class="kvlist postinglist">
+				<dd><label for="group_list">{L_USERGROUPS}:</label> <select name="group_list[]" id="group_list" multiple="multiple" size="4">{S_GROUP_OPTIONS}</select></dd>
+			</dl>
+		<!-- ENDIF -->
+
+	<!-- ENDIF -->
+
+	<!-- IF S_DELETE_ALLOWED or S_SHOW_TOPIC_ICONS or S_SHOW_PM_ICONS or (not S_PRIVMSGS and S_DISPLAY_USERNAME) or S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
+	<dl class="kvlist postinglist">
+	<!-- IF S_DELETE_ALLOWED -->
+		<dt><label for="delete">{L_DELETE_POST}:</label></dt>
+		<dd><label for="delete"><input type="checkbox" name="delete" id="delete" /> {L_DELETE_POST_WARN}</label></dd>
+	<!-- ENDIF -->
+
+	<!-- IF S_SHOW_TOPIC_ICONS or S_SHOW_PM_ICONS -->
+		<dt><label for="icon">{L_ICON}:</label></dt>
+		<dd>
+			<label for="icon"><input type="radio" name="icon" id="icon" value="0" checked="checked" /> <!-- IF S_SHOW_TOPIC_ICONS -->{L_NO_TOPIC_ICON}<!-- ELSE -->{L_NO_PM_ICON}<!-- ENDIF --></label>
+			<!-- BEGIN topic_icon --><label for="icon-{topic_icon.ICON_ID}"><input type="radio" name="icon" id="icon-{topic_icon.ICON_ID}" value="{topic_icon.ICON_ID}" {topic_icon.S_ICON_CHECKED} /><img src="{topic_icon.ICON_IMG}" width="{topic_icon.ICON_WIDTH}" height="{topic_icon.ICON_HEIGHT}" alt="" title="" /></label> <!-- END topic_icon -->
+		</dd>
+	<!-- ENDIF -->
+
+	<!-- IF not S_PRIVMSGS and S_DISPLAY_USERNAME -->
+		<dt><label for="username">{L_USERNAME}:</label></dt>
+		<dd><input type="text" tabindex="1" name="username" id="username" size="25" value="{USERNAME}" /></dd>
+	<!-- ENDIF -->
+
+	<!-- IF S_POST_ACTION or S_PRIVMSGS or S_EDIT_DRAFT -->
+		<dt><label for="subject">{L_SUBJECT}:</label></dt>
+		<dd><input type="text" name="subject" id="subject" size="45" maxlength="<!-- IF S_NEW_MESSAGE -->60<!-- ELSE -->64<!-- ENDIF -->" tabindex="2" value="{SUBJECT}{DRAFT_SUBJECT}" /></dd>
+		<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+			<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+			<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+		<!-- ENDIF -->
+	<!-- ENDIF -->
+	</dl>
+	<!-- ENDIF -->
+
+	<!-- INCLUDE posting_buttons.html -->
+
+
+	<div id="message-box">
+		<textarea <!-- IF S_UCP_ACTION and not S_PRIVMSGS and not S_EDIT_DRAFT -->name="signature" id="signature" style="height: 9em;"<!-- ELSE -->name="message" id="message"<!-- ENDIF --> rows="15" cols="76" tabindex="4" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onfocus="initInsertions();">{MESSAGE}{DRAFT_MESSAGE}{SIGNATURE}</textarea>
+	</div>
+
+<!-- IF $EXTRA_POSTING_OPTIONS eq 1 -->
+	<!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 -->
+	<div>
+			<!-- IF S_NOTIFY_ALLOWED -->
+				<div><label for="notify"><input type="checkbox" name="notify" id="notify"{S_NOTIFY_CHECKED} /> {L_NOTIFY_REPLY}</label></div>
+			<!-- ENDIF -->
+	</div>
+	<!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 -->
+
+	<!-- IF not S_SHOW_DRAFTS -->
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF S_HAS_ATTACHMENTS -->
+		<h2>{L_POSTED_ATTACHMENTS}</h2>
+		<div class="panel">
+
+			<!-- BEGIN attach_row -->
+				<h3><a href="{attach_row.U_VIEW_ATTACHMENT}" class="{S_CONTENT_FLOW_END}">{attach_row.FILENAME}</a></h3>
+				<dl class="kvlist postinglist">
+					<dt><label for="comment_list_{attach_row.ASSOC_INDEX}">{L_FILE_COMMENT}:</label></dt>
+					<dd><textarea name="comment_list[{attach_row.ASSOC_INDEX}]" id="comment_list_{attach_row.ASSOC_INDEX}" rows="3" cols="40">{attach_row.FILE_COMMENT}</textarea></dd>
+				</dl>
+				<div>
+					<!-- IF S_INLINE_ATTACHMENT_OPTIONS --><input type="button" value="{L_PLACE_INLINE}" onclick="attach_inline({attach_row.ASSOC_INDEX}, '{attach_row.A_FILENAME}');" /> <!-- ENDIF -->
+					<input type="submit" name="delete_file[{attach_row.ASSOC_INDEX}]" value="{L_DELETE_FILE}" />
+				</div>
+				{attach_row.S_HIDDEN}
+				<!-- IF not attach_row.S_LAST_ROW --><hr /><!-- ENDIF -->
+			<!-- END attach_row -->
+		</div>
+	<!-- ENDIF -->
+
+	<!-- ENDIF -->
+	<div class="posting-submit-buttons">
+		{S_HIDDEN_ADDRESS_FIELD}
+		{S_HIDDEN_FIELDS}
+		<!-- IF S_HAS_DRAFTS --><input type="submit" accesskey="d" tabindex="8" name="load" value="{L_LOAD_DRAFT}" onclick="load_draft = true;" /> <!-- ENDIF -->
+		<!-- IF S_SAVE_ALLOWED --><input type="submit" accesskey="k" tabindex="7" name="save" value="{L_SAVE_DRAFT}" /> <!-- ENDIF -->
+		<input type="submit" tabindex="5" name="preview" value="{L_PREVIEW}"<!-- IF not S_PRIVMSGS --> onclick="document.getElementById('postform').action += '#preview';"<!-- ENDIF --> />
+		<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" />
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 --><div><!-- ENDIF -->
+
+<!-- ENDIF -->

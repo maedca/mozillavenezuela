@@ -1,0 +1,68 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{PAGE_TITLE}</h1>
+
+<form method="post" action="{S_MODE_ACTION}">
+
+<!-- IF .admin -->
+	<table class="normal-table">
+	<thead>
+	<tr>
+		<th>{L_ADMINISTRATORS}</th>
+		<td class="members-rank">{L_RANK}</td>
+		<td class="members-group">{L_PRIMARY_GROUP}</td>
+		<td class="members-forums">{L_FORUMS}</td>
+	</tr>
+	</thead>
+	<tbody>
+<!-- BEGIN admin -->
+	<tr>
+		<th>{admin.USERNAME_FULL}</th>
+		<td class="members-rank"><!-- IF admin.RANK_IMG -->{admin.RANK_IMG}<!-- ELSE -->{admin.RANK_TITLE}<!-- ENDIF --></td>
+		<td class="members-group"><!-- IF admin.U_GROUP -->
+			<a<!-- IF admin.GROUP_COLOR --> style="font-weight: bold; color:#{admin.GROUP_COLOR}"<!-- ENDIF --> href="{admin.U_GROUP}">{admin.GROUP_NAME}</a>
+			<!-- ELSE -->
+				{admin.GROUP_NAME}
+			<!-- ENDIF --></td>
+		<td class="members-forums">-</td>
+	</tr>
+<!-- END admin -->
+	</tbody>
+	</table>
+<!-- ELSE -->
+	<p><strong>{L_NO_ADMINISTRATORS}</strong></p>
+<!-- ENDIF -->
+
+<!-- IF .mod -->
+	<table class="normal-table">
+	<thead>
+	<tr>
+		<th>{L_MODERATORS}</th>
+		<td class="members-rank">{L_RANK}</td>
+		<td class="members-group">{L_PRIMARY_GROUP}</td>
+		<td class="members-forums">{L_FORUMS}</td>
+	</tr>
+	</thead>
+	<tbody>
+<!-- BEGIN mod -->
+	<tr>
+		<th>{mod.USERNAME_FULL}</th>
+		<td class="members-rank"><!-- IF mod.RANK_IMG -->{mod.RANK_IMG}<!-- ELSE -->{mod.RANK_TITLE}<!-- ENDIF --></td>
+		<td class="members-group"><!-- IF mod.U_GROUP -->
+			<a<!-- IF mod.GROUP_COLOR --> style="font-weight: bold; color:#{mod.GROUP_COLOR}"<!-- ENDIF --> href="{mod.U_GROUP}">{mod.GROUP_NAME}</a>
+			<!-- ELSE -->
+				{mod.GROUP_NAME}
+			<!-- ENDIF --></td>
+		<td class="members-forums"><!-- IF not mod.FORUMS -->{L_ALL_FORUMS}<!-- ELSE --><select style="width: 100%;">{mod.FORUMS}</select><!-- ENDIF --></td>
+	</tr>
+<!-- END mod -->
+	</tbody>
+	</table>
+<!-- ELSE -->
+	<p><strong>{L_NO_MODERATORS}</strong></p>
+<!-- ENDIF -->
+
+</form>
+
+<!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE overall_footer.html -->

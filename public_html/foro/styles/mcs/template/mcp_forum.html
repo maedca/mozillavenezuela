@@ -1,0 +1,93 @@
+<!-- INCLUDE mcp_header.html -->
+
+<!-- DEFINE $CUSTOM_FIELDSET_CLASS = 'forum-selection2' -->
+<!-- INCLUDE jumpbox.html -->
+
+<h1><a href="{U_VIEW_FORUM}">{L_FORUM}: {FORUM_NAME}</a></h1>
+
+<form method="post" id="mcp" action="{S_MCP_ACTION}">
+
+	<!-- IF .topicrow -->
+		<div class="display-actions">
+			<!-- DEFINE $TOTAL = '{TOTAL_TOPICS}' -->
+			<!-- INCLUDE pagination.html -->
+			<div class="display-actions-end"></div>
+		</div>
+
+		<table class="normal-table">
+			<thead>
+				<tr>
+					<th>{L_TOPICS}</th>
+					<td class="posts">{L_REPLIES}</td>
+					<td class="lastpost">{L_LAST_POST}</td>
+					<!-- IF not S_MERGE_SELECT --><td class="mark-col">{L_MARK} <input type="checkbox" id="topic_id_list_all" onclick="marklist_all('mcp', 'topic_id_list[', 'topic_id_list_all');" title="{L_MARK_ALL}" /></td><!-- ENDIF -->
+				</tr>
+			</thead>
+			<tbody>
+
+		<!-- BEGIN topicrow -->
+		<tr<!-- IF topicrow.S_TOPIC_REPORTED --> class="reported"<!-- ENDIF -->>
+				<th>
+					<img src="{topicrow.TOPIC_FOLDER_IMG_SRC}" alt="" />
+					<!-- IF topicrow.TOPIC_ICON_IMG --><img src="{T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}" alt="" /><!-- ENDIF -->
+					<!-- IF topicrow.S_SELECT_TOPIC --><a href="{topicrow.U_SELECT_TOPIC}" class="topictitle">[ {L_SELECT_MERGE} ]</a> <!-- ENDIF -->
+					<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF -->
+					<!-- IF topicrow.S_MOVED_TOPIC and S_CAN_DELETE --> <a href="{topicrow.U_DELETE_TOPIC}" class="topictitle">[ {L_DELETE_SHADOW_TOPIC} ]</a><!-- ENDIF -->
+					<div class="desc">
+					<!-- IF topicrow.PAGINATION --><strong class="pagination">{topicrow.PAGINATION}</strong><!-- ENDIF -->
+					<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}
+					</div>
+				</th>
+				<td class="posts">{topicrow.REPLIES}</td>
+				<td class="lastpost">{L_POST_BY_AUTHOR} {topicrow.LAST_POST_AUTHOR_FULL}<div>{topicrow.LAST_POST_TIME}</div></td>
+				<!-- IF not S_MERGE_SELECT -->
+				<td class="mark-col">
+					<!-- IF not topicrow.S_MOVED_TOPIC --><input type="checkbox" name="topic_id_list[]" onclick="marklist_each('mcp', 'topic_id_list[', 'topic_id_list_all');" value="{topicrow.TOPIC_ID}"<!-- IF topicrow.S_TOPIC_CHECKED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF -->
+				</td>
+				<!-- ENDIF -->
+		</tr>
+		<!-- END topicrow -->
+		</tbody></table>
+
+		<fieldset class="display-options">
+			<label>{L_DISPLAY_TOPICS}: {S_SELECT_SORT_DAYS}</label>
+			<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+			<label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" /></label>
+		</fieldset>
+
+		<div class="display-actions">
+			<!-- IF not S_MERGE_SELECT -->
+				<div class="action-select">
+					<select name="action">
+						<option value="" selected="selected">{L_SELECT_ACTION}</option>
+						<!-- IF S_CAN_DELETE --><option value="delete_topic">{L_DELETE}</option><!-- ENDIF -->
+						<!-- IF S_CAN_MERGE --><option value="merge_topics">{L_MERGE}</option><!-- ENDIF -->
+						<!-- IF S_CAN_MOVE --><option value="move">{L_MOVE}</option><!-- ENDIF -->
+						<!-- IF S_CAN_FORK --><option value="fork">{L_FORK}</option><!-- ENDIF -->
+						<!-- IF S_CAN_LOCK --><option value="lock">{L_LOCK}</option><option value="unlock">{L_UNLOCK}</option><!-- ENDIF -->
+						<!-- IF S_CAN_SYNC --><option value="resync">{L_RESYNC}</option><!-- ENDIF -->
+						<!-- IF S_CAN_MAKE_NORMAL --><option value="make_normal">{L_MAKE_NORMAL}</option><!-- ENDIF -->
+						<!-- IF S_CAN_MAKE_STICKY --><option value="make_sticky">{L_MAKE_STICKY}</option><!-- ENDIF -->
+						<!-- IF S_CAN_MAKE_ANNOUNCE -->
+							<option value="make_announce">{L_MAKE_ANNOUNCE}</option>
+							<option value="make_global">{L_MAKE_GLOBAL}</option>
+						<!-- ENDIF -->
+					</select>
+					<input type="submit" value="{L_SUBMIT}" />
+				</div>
+			<!-- ENDIF -->
+			{S_FORM_TOKEN}
+
+			<!-- INCLUDE pagination.html -->
+			<div class="display-actions-end"></div>
+		</div>
+</form>
+
+	<!-- ELSE -->
+		<p class="no-entries">{L_NO_TOPICS}</p>
+	<!-- ENDIF -->
+
+
+<!-- INCLUDE mcp_footer.html -->

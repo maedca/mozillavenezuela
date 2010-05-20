@@ -1,0 +1,34 @@
+<!-- IF .draftrow -->
+	<h2>{L_LOAD_DRAFT}</h2>
+	<p class="panel">{L_LOAD_DRAFT_EXPLAIN}</p>
+
+	<table class="normal-table">
+		<thead>
+			<tr>
+				<th>{L_LOAD_DRAFT}</th>
+				<td class="posted">{L_SAVE_DATE}</td>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- BEGIN draftrow -->
+			<tr>
+				<th>
+					<a href="{draftrow.U_INSERT}" title="{L_LOAD_DRAFT}" class="topictitle">{draftrow.DRAFT_SUBJECT}</a>
+					<!-- IF not S_PRIVMSGS -->
+						<div class="desc">
+							<!-- IF draftrow.S_LINK_TOPIC -->
+								{L_TOPIC}: <a href="{draftrow.U_VIEW}">{draftrow.TITLE}</a>
+							<!-- ELSEIF draftrow.S_LINK_FORUM -->
+								{L_FORUM}: <a href="{draftrow.U_VIEW}">{draftrow.TITLE}</a>
+							<!-- ELSE -->
+								{L_NO_TOPIC_FORUM}
+							<!-- ENDIF -->
+						</div>
+					<!-- ENDIF -->
+				</th>
+				<td class="posted">{draftrow.DATE}</td>
+			</tr>
+		<!-- END draftrow -->
+		</tbody>
+	</table>
+<!-- ENDIF -->

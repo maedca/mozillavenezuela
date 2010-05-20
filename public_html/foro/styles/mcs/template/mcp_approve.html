@@ -1,0 +1,39 @@
+<!-- INCLUDE overall_header.html -->
+
+<form id="confirm" action="{S_CONFIRM_ACTION}" method="post">
+
+
+		<h1>{MESSAGE_TITLE}</h1>
+		<!-- IF ADDITIONAL_MSG --><p class="panel">{ADDITIONAL_MSG}</p><!-- ENDIF -->
+
+		<!-- IF S_NOTIFY_POSTER -->
+			<dl class="panel">
+				<dt></dt>
+				<dd><label><input type="checkbox" name="notify_poster" checked="checked" /> <!-- IF S_APPROVE -->{L_NOTIFY_POSTER_APPROVAL}<!-- ELSE -->{L_NOTIFY_POSTER_DISAPPROVAL}<!-- ENDIF --></label></dd>
+			</dl>
+		<!-- ENDIF -->
+
+		<!-- IF not S_APPROVE -->
+		<div class="panel">
+			<dl class="kvlist mcp-reject">
+				<dt><label>{L_DISAPPROVE_REASON}:</label></dt>
+				<dd><select name="reason_id">
+					<!-- BEGIN reason --><option value="{reason.ID}"<!-- IF reason.S_SELECTED --> selected="selected"<!-- ENDIF -->>{reason.DESCRIPTION}</option><!-- END reason -->
+					</select>
+				</dd>
+				<dt><label for="reason">{L_MORE_INFO}:</label></dt>
+				<dd><textarea name="reason" id="reason" rows="4" cols="40">{REASON}</textarea><div class="explain">{L_CAN_LEAVE_BLANK}</div></dd>
+			</dl>
+		</div>
+		<!-- ENDIF -->
+
+		<div class="panel">{MESSAGE_TEXT}</div>
+
+		<div>
+			<input type="submit" name="confirm" value="{YES_VALUE}" /> 
+			<input type="submit" name="cancel" value="{L_NO}" />{S_HIDDEN_FIELDS}{S_FORM_TOKEN}
+		</div>
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->
